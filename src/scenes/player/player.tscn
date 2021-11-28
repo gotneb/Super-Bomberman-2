@@ -19,29 +19,29 @@ animations = [ {
 "frames": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ) ],
 "loop": true,
 "name": "left",
-"speed": 6.0
+"speed": 7.0
 }, {
 "frames": [ ExtResource( 4 ), ExtResource( 6 ), ExtResource( 5 ) ],
 "loop": true,
 "name": "right",
-"speed": 6.0
+"speed": 7.0
 }, {
 "frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ) ],
 "loop": true,
 "name": "top",
-"speed": 6.0
+"speed": 7.0
 }, {
 "frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
 "loop": true,
 "name": "down",
-"speed": 6.0
+"speed": 7.0
 } ]
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 7.39277
 
 [node name="Player" type="KinematicBody2D"]
-collision_mask = 14
+collision_mask = 46
 script = ExtResource( 13 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]

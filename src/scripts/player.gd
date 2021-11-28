@@ -2,9 +2,12 @@ extends KinematicBody2D
 class_name Player
 
 export var speed := 25
+var stage: Node2D
+
 var _velocity := Vector2.ZERO
 
-func _physics_process(delta) -> void:
+
+func _process(delta) -> void:
 	_move(delta)
 
 
@@ -14,6 +17,10 @@ func _move(delta: float) -> void:
 			Input.get_action_strength("down") - Input.get_action_strength("up")
 		)
 	_select_animation()
+	
+	if Input.is_action_just_pressed("put_bomb"):
+		_put_bomb()
+	
 	_velocity = move_and_slide(_velocity * speed * delta * 100)
 
 
@@ -31,3 +38,11 @@ func _select_animation() -> void:
 	else:
 		$AnimatedSprite.frame = 1
 		$AnimatedSprite.stop()
+
+
+func _put_bomb() -> void:
+	var bomb: Bomb = preload("res://scenes/world/bombs/bomb.tscn").instance()
+	var x:= (int(position.x) / 16) * 16 + 8
+	var y:= (int(position.y) / 16) * 16 + 3
+	bomb.position = Vector2(x, y)
+	stage.get_node("Bombs").add_child(bomb)
