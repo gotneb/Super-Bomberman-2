@@ -35,6 +35,7 @@ disabled = true
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.5
+one_shot = true
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 32
@@ -42,6 +43,8 @@ collision_layer = 32
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2( 0, -8 )
 shape = SubResource( 3 )
+
+[node name="Explosion" type="Node2D" parent="."]
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_body_exited"]

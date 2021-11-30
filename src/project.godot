@@ -14,6 +14,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/bomb.gd"
 }, {
+"base": "Node2D",
+"class": "Explosion",
+"language": "GDScript",
+"path": "res://scripts/explosion.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Player",
 "language": "GDScript",
@@ -21,12 +26,14 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Bomb": "",
+"Explosion": "",
 "Player": ""
 }
 
 [application]
 
 config/name="Super Bomberman"
+run/main_scene="res://scenes/story_mode/castle/1_1.tscn"
 config/icon="res://icon.png"
 
 [display]
