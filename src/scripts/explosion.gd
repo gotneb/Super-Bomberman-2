@@ -4,6 +4,13 @@ class_name Explosion
 var bomb
 var _createExplosion := false
 
+var arms = {
+	"left": [],
+	"up": [],
+	"right": [],
+	"down": [],
+}
+
 var _dir = {
 	"left": Vector2.LEFT * 16,
 	"up": Vector2.UP * 16,
@@ -14,6 +21,7 @@ var _dir = {
 var power := 3
 
 func _ready():
+	visible = false
 	$Timer.start()
 	$Arms/Horizontal.position = Vector2.ZERO
 	$Arms/Vertical.position = Vector2.ZERO
@@ -24,21 +32,23 @@ func _process(delta: float) -> void:
 		_enable_stubs()
 		_start_animations()
 		for i in range(1, power + 1):
+			var elem = {"up": [$Stubs/Up, $Arms/Vertical], "left": [$Stubs/Left, $Arms/Horizontal], "right": [$Stubs/Right, $Arms/Horizontal], "down": [$Stubs/Down, $Arms/Vertical]}
+			# Create stubs' explosion
 			if i == power:
-				$Stubs/Up.position = $Center.position + i * _dir["up"]
-				$Stubs/Down.position = $Center.position + i * _dir["down"]
-				$Stubs/Left.position = $Center.position + i * _dir["left"]
-				$Stubs/Right.position = $Center.position + i * _dir["right"]
+				for key in elem:
+					elem[key][0].position = $Center.position + i * _dir[key]
+			# Create arms' explosion
 			else:
-				$".".add_child(_create_node($Arms/Vertical, i * + _dir["up"]))
-				$".".add_child(_create_node($Arms/Vertical, i * + _dir["down"]))
-				$".".add_child(_create_node($Arms/Horizontal, i * + _dir["right"]))
-				$".".add_child(_create_node($Arms/Horizontal, i * + _dir["left"]))
+				for key in elem:
+					arms[key].append(_create_node(elem[key][1], i * + _dir[key]))
+					$".".add_child(arms[key][i -1])
 		_createExplosion = false
 
 
 func _on_Timer_timeout():
+	$Explosion.play(0.7)
 	_createExplosion = true
+	visible = true
 
 
 func _create_node(arm: Node2D, pos: Vector2) -> Node2D:
@@ -50,10 +60,9 @@ func _create_node(arm: Node2D, pos: Vector2) -> Node2D:
 
 
 func _start_animations() -> void:
-	var nodes = [$Stubs/Up, $Stubs/Down, $Stubs/Left, $Stubs/Right, $Arms/Vertical, $Arms/Horizontal]
+	var nodes = [$Stubs/Up, $Stubs/Down, $Stubs/Left, $Stubs/Right, $Arms/Vertical, $Arms/Horizontal, $Center]
 	for i in nodes:
 		i.get_node("AnimatedSprite").play("default")
-	$Center/AnimatedSprite.play("default")
 
 
 # By default, all stubs are invisble and disabled colision

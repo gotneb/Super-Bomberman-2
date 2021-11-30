@@ -41,6 +41,7 @@ func _select_animation() -> void:
 
 
 func _put_bomb() -> void:
+	$BombPutted.play(0.67)
 	var bomb: Bomb = preload("res://scenes/world/bombs/bomb.tscn").instance()
 	var x:= (int(position.x) / 16) * 16 + 8
 	var y:= (int(position.y) / 16) * 16 + 3

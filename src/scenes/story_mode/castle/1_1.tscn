@@ -8,6 +8,7 @@
 [ext_resource path="res://animations/stage_1/water2/water2.tres" type="Texture" id=6]
 [ext_resource path="res://scenes/player/player.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scripts/stages/castle/1_1.gd" type="Script" id=8]
+[ext_resource path="res://scenes/story_mode/castle/block_castle.tscn" type="PackedScene" id=9]
 
 [sub_resource type="TileSet" id=1]
 0/name = "spritesheet.png 0"
@@ -284,9 +285,6 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 
 [sub_resource type="ConvexPolygonShape2D" id=37]
-points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
-
-[sub_resource type="ConvexPolygonShape2D" id=38]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 
 [sub_resource type="ConvexPolygonShape2D" id=39]
@@ -1173,27 +1171,6 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 45/shape_one_way_margin = 0.0
 45/shapes = [  ]
 45/z_index = 0
-46/name = "spritesheet.png 46"
-46/texture = ExtResource( 1 )
-46/tex_offset = Vector2( 0, 0 )
-46/modulate = Color( 1, 1, 1, 1 )
-46/region = Rect2( 1, 1, 16, 16 )
-46/tile_mode = 0
-46/occluder_offset = Vector2( 0, 0 )
-46/navigation_offset = Vector2( 0, 0 )
-46/shape_offset = Vector2( 0, 0 )
-46/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-46/shape = SubResource( 38 )
-46/shape_one_way = false
-46/shape_one_way_margin = 1.0
-46/shapes = [ {
-"autotile_coord": Vector2( 0, 0 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 38 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-} ]
-46/z_index = 0
 
 [sub_resource type="TileSet" id=45]
 0/name = "spritesheet.png 0"
@@ -1383,7 +1360,7 @@ cell_size = Vector2( 16, 16 )
 format = 1
 tile_data = PoolIntArray( 131074, 1, 0, 131076, 1, 0, 131078, 1, 0, 131080, 1, 0, 131082, 1, 0, 131083, 0, 0, 131084, 1, 0, 131085, 0, 0, 131086, 0, 0, 196610, 0, 0, 196611, 1, 0, 196612, 0, 0, 196613, 1, 0, 196614, 0, 0, 196615, 1, 0, 196616, 0, 0, 196617, 1, 0, 196618, 0, 0, 196619, 0, 0, 196620, 0, 0, 196621, 0, 0, 196622, 0, 0, 262146, 0, 0, 262148, 0, 0, 262150, 0, 0, 262152, 0, 0, 262154, 0, 0, 262156, 0, 0, 262158, 0, 0, 327682, 0, 0, 327683, 1, 0, 327684, 0, 0, 327685, 1, 0, 327686, 0, 0, 327687, 1, 0, 327688, 0, 0, 327689, 1, 0, 327690, 0, 0, 327691, 1, 0, 327692, 0, 0, 327693, 1, 0, 327694, 0, 0, 393220, 2, 0, 393228, 2, 0, 458755, 1, 0, 458756, 1, 0, 458757, 1, 0, 458758, 1, 0, 458759, 1, 0, 458760, 1, 0, 458761, 1, 0, 458762, 1, 0, 458763, 1, 0, 458764, 1, 0, 458765, 1, 0, 524292, 0, 0, 524294, 0, 0, 524296, 0, 0, 524298, 0, 0, 524300, 0, 0, 589827, 1, 0, 589828, 0, 0, 589829, 1, 0, 589830, 0, 0, 589831, 1, 0, 589832, 0, 0, 589833, 1, 0, 589834, 0, 0, 589835, 1, 0, 589836, 0, 0, 589837, 1, 0, 655364, 0, 0, 655366, 0, 0, 655368, 0, 0, 655370, 0, 0, 655372, 0, 0, 720898, 1, 0, 720899, 1, 0, 720900, 0, 0, 720901, 1, 0, 720902, 0, 0, 720903, 1, 0, 720904, 0, 0, 720905, 1, 0, 720906, 0, 0, 720907, 1, 0, 720908, 0, 0, 720909, 1, 0, 720910, 1, 0 )
 
-[node name="Blocks" type="TileMap" parent="Tiles"]
+[node name="Walls" type="TileMap" parent="Tiles"]
 tile_set = SubResource( 44 )
 cell_size = Vector2( 16, 16 )
 collision_layer = 8
@@ -1399,6 +1376,75 @@ tile_data = PoolIntArray( 11, 0, 0, 12, 1, 0, 13, 2, 0, 65547, 3, 0, 65548, 4, 0
 
 [node name="Control" parent="." instance=ExtResource( 2 )]
 rect_scale = Vector2( 0.34, 0.34 )
+
+[node name="Blocks" type="Node2D" parent="."]
+position = Vector2( 0, 20 )
+
+[node name="Block" parent="Blocks" instance=ExtResource( 9 )]
+position = Vector2( 88, 72 )
+
+[node name="Block2" parent="Blocks" instance=ExtResource( 9 )]
+position = Vector2( 56, 72 )
+
+[node name="Block3" parent="Blocks" instance=ExtResource( 9 )]
+position = Vector2( 56, 40 )
+
+[node name="Block4" parent="Blocks" instance=ExtResource( 9 )]
+position = Vector2( 88, 40 )
+
+[node name="Block5" parent="Blocks" instance=ExtResource( 9 )]
+position = Vector2( 120, 40 )
+
+[node name="Block6" parent="Blocks" instance=ExtResource( 9 )]
+position = Vector2( 120, 72 )
+
+[node name="Block7" parent="Blocks" instance=ExtResource( 9 )]
+position = Vector2( 152, 72 )
+
+[node name="Block8" parent="Blocks" instance=ExtResource( 9 )]
+position = Vector2( 152, 40 )
+
+[node name="Block9" parent="Blocks" instance=ExtResource( 9 )]
+position = Vector2( 184, 72 )
+
+[node name="Block10" parent="Blocks" instance=ExtResource( 9 )]
+position = Vector2( 216, 72 )
+
+[node name="Block11" parent="Blocks" instance=ExtResource( 9 )]
+position = Vector2( 216, 136 )
+
+[node name="Block12" parent="Blocks" instance=ExtResource( 9 )]
+position = Vector2( 216, 168 )
+
+[node name="Block13" parent="Blocks" instance=ExtResource( 9 )]
+position = Vector2( 184, 168 )
+
+[node name="Block14" parent="Blocks" instance=ExtResource( 9 )]
+position = Vector2( 184, 136 )
+
+[node name="Block15" parent="Blocks" instance=ExtResource( 9 )]
+position = Vector2( 152, 136 )
+
+[node name="Block16" parent="Blocks" instance=ExtResource( 9 )]
+position = Vector2( 120, 136 )
+
+[node name="Block17" parent="Blocks" instance=ExtResource( 9 )]
+position = Vector2( 152, 168 )
+
+[node name="Block18" parent="Blocks" instance=ExtResource( 9 )]
+position = Vector2( 120, 168 )
+
+[node name="Block19" parent="Blocks" instance=ExtResource( 9 )]
+position = Vector2( 88, 168 )
+
+[node name="Block20" parent="Blocks" instance=ExtResource( 9 )]
+position = Vector2( 88, 136 )
+
+[node name="Block21" parent="Blocks" instance=ExtResource( 9 )]
+position = Vector2( 56, 136 )
+
+[node name="Block22" parent="Blocks" instance=ExtResource( 9 )]
+position = Vector2( 56, 168 )
 
 [node name="Bombs" type="Node2D" parent="."]
 
