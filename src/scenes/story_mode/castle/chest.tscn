@@ -1,0 +1,54 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://assets/blocks/chest/exploding/1.png" type="Texture" id=1]
+[ext_resource path="res://assets/blocks/chest/exploding/5.png" type="Texture" id=2]
+[ext_resource path="res://assets/blocks/chest/exploding/3.png" type="Texture" id=3]
+[ext_resource path="res://assets/blocks/chest/exploding/4.png" type="Texture" id=4]
+[ext_resource path="res://assets/blocks/chest/exploding/2.png" type="Texture" id=5]
+[ext_resource path="res://assets/blocks/chest/exploding/0.png" type="Texture" id=6]
+[ext_resource path="res://assets/blocks/chest/idle.png" type="Texture" id=7]
+[ext_resource path="res://scripts/chest.gd" type="Script" id=8]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 7 ) ],
+"loop": false,
+"name": "idle",
+"speed": 0.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 1 ), ExtResource( 5 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "exploding",
+"speed": 8.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 8, 8 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 8, 8 )
+
+[node name="Chest" type="StaticBody2D"]
+collision_layer = 8
+collision_mask = 7
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 3 )
+
+[connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
