@@ -31,5 +31,4 @@ func _create_explosion() -> void:
 func _on_body_exited(body):
 	if not _hasExploded:
 		$Colision.set_deferred("disabled", false)
-		if body is Player:
-			body.is_inside_bomb = false
+		body.is_inside_bomb = false
