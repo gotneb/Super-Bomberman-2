@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/collected_item.Wav-8fa59b317ab8466b5218a13c8e5f3095.sample"
+path="res://.import/collected_item.wav-6da135fe71dd836f5581c40234fcbf02.sample"
 
 [deps]
 
-source_file="res://audio/collected_item.Wav"
-dest_files=[ "res://.import/collected_item.Wav-8fa59b317ab8466b5218a13c8e5f3095.sample" ]
+source_file="res://audio/collected_item.wav"
+dest_files=[ "res://.import/collected_item.wav-6da135fe71dd836f5581c40234fcbf02.sample" ]
 
 [params]
 

@@ -2,7 +2,7 @@ extends KinematicBody2D
 class_name PuffPuff
 
 var direction: Vector2
-var speed := 1400
+var speed := 16
 var is_alive := true
 var actual_position: Vector2
 
@@ -40,18 +40,18 @@ func update_direction(delta: float) -> void:
 	match direction:
 		Vector2.LEFT:
 			$AnimatedSprite.play("left")
-			velocity = Vector2.LEFT * speed * delta
+			velocity = Vector2.LEFT * speed * delta * 100
 			$AnimatedSprite.flip_h = false
 		Vector2.UP:
 			$AnimatedSprite.play("top")
-			velocity = Vector2.UP * speed * delta
+			velocity = Vector2.UP * speed * delta * 100
 		Vector2.RIGHT:
 			$AnimatedSprite.play("right")
-			velocity = Vector2.RIGHT * speed * delta
+			velocity = Vector2.RIGHT * speed * delta * 100
 			$AnimatedSprite.flip_h = true
 		Vector2.DOWN:
 			$AnimatedSprite.play("down")
-			velocity = Vector2.DOWN * speed * delta
+			velocity = Vector2.DOWN * speed * delta * 100
 
 
 func sort_direction() -> Vector2:
@@ -111,9 +111,7 @@ func _update_free_directions(vector: Vector2, value: bool, over_areas: int) -> v
 
 # ==================== DEATH =============================
 func _on_Area2D_area_entered(area):
-	if area is Player:
-		area.take_damage()
-	if area.get_parent().get_parent() is Explosion:
+	if area.get_parent().get_parent() is Explosion or area.get_parent() is Explosion:
 		is_alive = false
 		$CollisionShape2D.set_deferred("disabled", true)
 		$Die.start()
@@ -124,3 +122,8 @@ func _on_Die_timeout():
 	queue_free()
 
 # ======================================================
+
+
+func _on_Area2D_body_entered(body):
+	if body is Player:
+		body.take_damage()

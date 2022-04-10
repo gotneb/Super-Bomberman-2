@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://assets/player/left/1.png" type="Texture" id=1]
 [ext_resource path="res://assets/player/left/0.png" type="Texture" id=2]
@@ -14,6 +14,16 @@
 [ext_resource path="res://assets/player/top/2.png" type="Texture" id=12]
 [ext_resource path="res://scripts/player.gd" type="Script" id=13]
 [ext_resource path="res://audio/put_bomb.Wav" type="AudioStream" id=14]
+[ext_resource path="res://assets/player/death/3.png" type="Texture" id=15]
+[ext_resource path="res://assets/player/death/7.png" type="Texture" id=16]
+[ext_resource path="res://assets/player/death/0.png" type="Texture" id=17]
+[ext_resource path="res://assets/player/death/4.png" type="Texture" id=18]
+[ext_resource path="res://assets/player/death/2.png" type="Texture" id=19]
+[ext_resource path="res://assets/player/death/6.png" type="Texture" id=20]
+[ext_resource path="res://assets/player/death/8.png" type="Texture" id=21]
+[ext_resource path="res://assets/player/death/1.png" type="Texture" id=22]
+[ext_resource path="res://assets/player/death/5.png" type="Texture" id=23]
+[ext_resource path="res://audio/collected_item.wav" type="AudioStream" id=24]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -36,13 +46,19 @@ animations = [ {
 "loop": true,
 "name": "down",
 "speed": 7.0
+}, {
+"frames": [ ExtResource( 17 ), ExtResource( 22 ), ExtResource( 19 ), ExtResource( 15 ), ExtResource( 18 ), ExtResource( 23 ), ExtResource( 20 ), ExtResource( 16 ), ExtResource( 21 ) ],
+"loop": false,
+"name": "death",
+"speed": 7.0
 } ]
 
-[sub_resource type="CircleShape2D" id=2]
-radius = 7.39277
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 7.9
+height = 0.0
 
 [node name="Player" type="KinematicBody2D"]
-collision_mask = 46
+collision_mask = 44
 script = ExtResource( 13 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
@@ -54,8 +70,24 @@ centered = false
 offset = Vector2( -7.84826, -17.0076 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -0.49086, -5.8518 )
+position = Vector2( 0, -7.7 )
 shape = SubResource( 2 )
 
 [node name="BombPutted" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 14 )
+
+[node name="CollectedItem" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 24 )
+
+[node name="TakedDamage" type="Node2D" parent="."]
+
+[node name="Idle" type="Timer" parent="TakedDamage"]
+wait_time = 3.0
+one_shot = true
+
+[node name="Twinkle" type="Timer" parent="TakedDamage"]
+wait_time = 0.1
+
+[connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
+[connection signal="timeout" from="TakedDamage/Idle" to="." method="_on_Idle_timeout"]
+[connection signal="timeout" from="TakedDamage/Twinkle" to="." method="_on_Twinkle_timeout"]

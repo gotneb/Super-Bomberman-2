@@ -14,10 +14,20 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/bomb.gd"
 }, {
+"base": "StaticBody2D",
+"class": "Chest",
+"language": "GDScript",
+"path": "res://scripts/chest.gd"
+}, {
 "base": "Node2D",
 "class": "Explosion",
 "language": "GDScript",
 "path": "res://scripts/explosion.gd"
+}, {
+"base": "Area2D",
+"class": "Item",
+"language": "GDScript",
+"path": "res://scripts/item.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "Player",
@@ -31,7 +41,9 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Bomb": "",
+"Chest": "",
 "Explosion": "",
+"Item": "",
 "Player": "",
 "PuffPuff": ""
 }
@@ -89,6 +101,7 @@ put_bomb={
 2d_physics/layer_4="block"
 2d_physics/layer_5="world"
 2d_physics/layer_6="bomb"
+2d_physics/layer_7="item"
 
 [physics]
 

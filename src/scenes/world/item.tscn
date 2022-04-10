@@ -1,0 +1,57 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://assets/items/fire/1.png" type="Texture" id=1]
+[ext_resource path="res://assets/items/fire/0.png" type="Texture" id=2]
+[ext_resource path="res://assets/items/speed/1.png" type="Texture" id=3]
+[ext_resource path="res://assets/items/life/0.png" type="Texture" id=4]
+[ext_resource path="res://assets/items/bomb/0.png" type="Texture" id=5]
+[ext_resource path="res://assets/items/bomb/1.png" type="Texture" id=6]
+[ext_resource path="res://assets/items/life/1.png" type="Texture" id=7]
+[ext_resource path="res://assets/items/speed/0.png" type="Texture" id=8]
+[ext_resource path="res://scripts/item.gd" type="Script" id=9]
+[ext_resource path="res://audio/collected_item.wav" type="AudioStream" id=10]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 8 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "speed",
+"speed": 2.0
+}, {
+"frames": [ ExtResource( 5 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "bomb",
+"speed": 2.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "fire",
+"speed": 2.0
+}, {
+"frames": [ ExtResource( 4 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "life",
+"speed": 2.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 8, 8 )
+
+[node name="Item" type="Area2D"]
+collision_layer = 64
+collision_mask = 5
+script = ExtResource( 9 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "fire"
+frame = 1
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
+
+[node name="ItemCollected" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 10 )
+
+[connection signal="body_entered" from="." to="." method="_on_Item_body_entered"]

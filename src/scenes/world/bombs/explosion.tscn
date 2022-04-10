@@ -82,7 +82,7 @@ animations = [ {
 "speed": 13.0
 } ]
 
-[sub_resource type="SpriteFrames" id=10]
+[sub_resource type="SpriteFrames" id=9]
 animations = [ {
 "frames": [ ExtResource( 17 ), ExtResource( 21 ), ExtResource( 18 ), ExtResource( 20 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 18 ), ExtResource( 21 ), ExtResource( 17 ) ],
 "loop": true,
@@ -90,10 +90,10 @@ animations = [ {
 "speed": 13.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=9]
+[sub_resource type="RectangleShape2D" id=10]
 extents = Vector2( 5.32274, 5.50005 )
 
-[sub_resource type="SpriteFrames" id=12]
+[sub_resource type="SpriteFrames" id=11]
 animations = [ {
 "frames": [ ExtResource( 27 ), ExtResource( 31 ), ExtResource( 29 ), ExtResource( 30 ), ExtResource( 28 ), ExtResource( 30 ), ExtResource( 28 ), ExtResource( 30 ), ExtResource( 28 ), ExtResource( 30 ), ExtResource( 29 ), ExtResource( 31 ), ExtResource( 27 ) ],
 "loop": true,
@@ -101,10 +101,10 @@ animations = [ {
 "speed": 13.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=11]
+[sub_resource type="RectangleShape2D" id=12]
 extents = Vector2( 6.00004, 4.25005 )
 
-[sub_resource type="SpriteFrames" id=14]
+[sub_resource type="SpriteFrames" id=13]
 animations = [ {
 "frames": [ ExtResource( 35 ), ExtResource( 34 ), ExtResource( 33 ), ExtResource( 36 ), ExtResource( 32 ), ExtResource( 36 ), ExtResource( 32 ), ExtResource( 36 ), ExtResource( 32 ), ExtResource( 36 ), ExtResource( 33 ), ExtResource( 34 ), ExtResource( 35 ) ],
 "loop": true,
@@ -112,7 +112,7 @@ animations = [ {
 "speed": 13.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=13]
+[sub_resource type="RectangleShape2D" id=14]
 extents = Vector2( 5.5, 4.75005 )
 
 [node name="Explosion" type="Node2D"]
@@ -151,6 +151,7 @@ frames = SubResource( 4 )
 ]]
 visible = false
 position = Vector2( 39.6146, 56.0842 )
+collision_layer = 4
 collision_mask = 11
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Arms/Horizontal"]
@@ -182,10 +183,10 @@ collision_layer = 4
 collision_mask = 11
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Stubs/Down"]
-frames = SubResource( 10 )
+frames = SubResource( 9 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Stubs/Down"]
-shape = SubResource( 9 )
+shape = SubResource( 10 )
 disabled = true
 
 [node name="Right" type="Area2D" parent="Stubs"]
@@ -195,10 +196,10 @@ collision_layer = 4
 collision_mask = 11
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Stubs/Right"]
-frames = SubResource( 12 )
+frames = SubResource( 11 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Stubs/Right"]
-shape = SubResource( 11 )
+shape = SubResource( 12 )
 disabled = true
 
 [node name="Left" type="Area2D" parent="Stubs"]
@@ -208,10 +209,10 @@ collision_layer = 4
 collision_mask = 11
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Stubs/Left"]
-frames = SubResource( 14 )
+frames = SubResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Stubs/Left"]
-shape = SubResource( 13 )
+shape = SubResource( 14 )
 disabled = true
 
 [node name="Timer" type="Timer" parent="."]

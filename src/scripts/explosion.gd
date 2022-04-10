@@ -18,7 +18,7 @@ var _dir = {
 	"down": Vector2.DOWN * 16,
 }
 
-var power := 3
+var power: int
 
 func _ready():
 	visible = false
@@ -32,7 +32,12 @@ func _process(delta: float) -> void:
 		_enable_stubs()
 		_start_animations()
 		for i in range(1, power + 1):
-			var elem = {"up": [$Stubs/Up, $Arms/Vertical], "left": [$Stubs/Left, $Arms/Horizontal], "right": [$Stubs/Right, $Arms/Horizontal], "down": [$Stubs/Down, $Arms/Vertical]}
+			var elem = {
+			"up": [$Stubs/Up, $Arms/Vertical],
+			"left": [$Stubs/Left, $Arms/Horizontal],
+			"right": [$Stubs/Right, $Arms/Horizontal],
+			"down": [$Stubs/Down, $Arms/Vertical]
+			}
 			# Create stubs' explosion
 			if i == power:
 				for key in elem:

@@ -42,8 +42,8 @@ animations = [ {
 } ]
 
 [sub_resource type="CapsuleShape2D" id=2]
-radius = 6.92581
-height = 0.0
+radius = 6.99112
+height = 1.35876
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 2.75, 4 )
@@ -57,13 +57,14 @@ extents = Vector2( 4, 2 )
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 1.73645, 2.51777 )
 
-[sub_resource type="CircleShape2D" id=7]
-radius = 5.76533
+[sub_resource type="CapsuleShape2D" id=7]
+radius = 7.38128
+height = 1.24938
 
 [node name="Puff Puff" type="KinematicBody2D"]
 position = Vector2( 0, -8 )
 collision_layer = 2
-collision_mask = 45
+collision_mask = 44
 script = ExtResource( 10 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
@@ -71,13 +72,14 @@ frames = SubResource( 1 )
 animation = "down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -0.25, 4.75 )
+position = Vector2( 0.633883, 5.5455 )
 shape = SubResource( 2 )
 
 [node name="ChangeDirection" type="Timer" parent="."]
 autostart = true
 
 [node name="Detectors" type="Node2D" parent="."]
+visible = false
 
 [node name="Up" type="Area2D" parent="Detectors"]
 position = Vector2( 0, -6.5 )
@@ -102,7 +104,7 @@ __meta__ = {
 shape = SubResource( 4 )
 
 [node name="Left" type="Area2D" parent="Detectors"]
-position = Vector2( -11, 4.75 )
+position = Vector2( -10.2045, 5.63388 )
 collision_layer = 0
 collision_mask = 8
 __meta__ = {
@@ -124,9 +126,9 @@ __meta__ = {
 shape = SubResource( 6 )
 
 [node name="Area2D" type="Area2D" parent="."]
-position = Vector2( 0, 5.12653 )
+position = Vector2( 0.618719, 5.56847 )
 collision_layer = 2
-collision_mask = 4
+collision_mask = 5
 __meta__ = {
 "_edit_group_": true
 }
@@ -148,4 +150,5 @@ one_shot = true
 [connection signal="area_entered" from="Detectors/Down" to="." method="_on_Down_area_entered"]
 [connection signal="area_exited" from="Detectors/Down" to="." method="_on_Down_area_exited"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="timeout" from="Die" to="." method="_on_Die_timeout"]
