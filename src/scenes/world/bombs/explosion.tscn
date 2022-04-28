@@ -49,9 +49,6 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 5.68734, 5.91584 )
 
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 7.13206, 7.02141 )
-
 [sub_resource type="SpriteFrames" id=4]
 animations = [ {
 "frames": [ ExtResource( 16 ), ExtResource( 13 ), ExtResource( 15 ), ExtResource( 12 ), ExtResource( 14 ), ExtResource( 12 ), ExtResource( 14 ), ExtResource( 12 ), ExtResource( 14 ), ExtResource( 12 ), ExtResource( 15 ), ExtResource( 13 ), ExtResource( 16 ) ],
@@ -59,6 +56,9 @@ animations = [ {
 "name": "default",
 "speed": 13.0
 } ]
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 7.13206, 7.02141 )
 
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 6.64091, 7.00609 )
@@ -71,9 +71,6 @@ animations = [ {
 "speed": 13.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 5.25, 5.50005 )
-
 [sub_resource type="SpriteFrames" id=8]
 animations = [ {
 "frames": [ ExtResource( 8 ), ExtResource( 11 ), ExtResource( 7 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 7 ), ExtResource( 11 ), ExtResource( 8 ) ],
@@ -81,6 +78,9 @@ animations = [ {
 "name": "default",
 "speed": 13.0
 } ]
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 5.25, 5.50005 )
 
 [sub_resource type="SpriteFrames" id=9]
 animations = [ {
@@ -139,12 +139,12 @@ position = Vector2( 39.6146, 40.0842 )
 collision_layer = 4
 collision_mask = 11
 
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Arms/Vertical"]
+frames = SubResource( 4 )
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Arms/Vertical"]
 shape = SubResource( 3 )
 disabled = true
-
-[node name="AnimatedSprite" type="AnimatedSprite" parent="Arms/Vertical"]
-frames = SubResource( 4 )
 
 [node name="Horizontal" type="Area2D" parent="Arms" groups=[
 "horizontal_arm",
@@ -169,12 +169,12 @@ position = Vector2( 7.61464, 40.0842 )
 collision_layer = 4
 collision_mask = 11
 
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Stubs/Up"]
+frames = SubResource( 8 )
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Stubs/Up"]
 shape = SubResource( 7 )
 disabled = true
-
-[node name="AnimatedSprite" type="AnimatedSprite" parent="Stubs/Up"]
-frames = SubResource( 8 )
 
 [node name="Down" type="Area2D" parent="Stubs"]
 visible = false
@@ -222,5 +222,10 @@ one_shot = true
 [node name="Explosion" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 37 )
 
+[connection signal="body_entered" from="Center" to="." method="_on_Center_body_entered"]
 [connection signal="animation_finished" from="Center/AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
+[connection signal="body_entered" from="Stubs/Up" to="." method="_on_Up_body_entered"]
+[connection signal="body_entered" from="Stubs/Down" to="." method="_on_Down_body_entered"]
+[connection signal="body_entered" from="Stubs/Right" to="." method="_on_Right_body_entered"]
+[connection signal="body_entered" from="Stubs/Left" to="." method="_on_Left_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

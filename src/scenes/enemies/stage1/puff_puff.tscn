@@ -58,10 +58,12 @@ extents = Vector2( 4, 2 )
 extents = Vector2( 1.73645, 2.51777 )
 
 [sub_resource type="CapsuleShape2D" id=7]
-radius = 7.38128
-height = 1.24938
+radius = 7.47943
+height = 0.0
 
-[node name="Puff Puff" type="KinematicBody2D"]
+[node name="Puff Puff" type="KinematicBody2D" groups=[
+"enemies",
+]]
 position = Vector2( 0, -8 )
 collision_layer = 2
 collision_mask = 44
@@ -125,20 +127,15 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detectors/Down"]
 shape = SubResource( 6 )
 
-[node name="Area2D" type="Area2D" parent="."]
-position = Vector2( 0.618719, 5.56847 )
-collision_layer = 2
-collision_mask = 5
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 7 )
-
 [node name="Die" type="Timer" parent="."]
 wait_time = 1.5
 one_shot = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 0.571384, 5.40685 )
+shape = SubResource( 7 )
 
 [connection signal="timeout" from="ChangeDirection" to="." method="_on_Timer_timeout"]
 [connection signal="area_entered" from="Detectors/Up" to="." method="_on_Up_area_entered"]
@@ -149,6 +146,5 @@ one_shot = true
 [connection signal="area_exited" from="Detectors/Left" to="." method="_on_Left_area_exited"]
 [connection signal="area_entered" from="Detectors/Down" to="." method="_on_Down_area_entered"]
 [connection signal="area_exited" from="Detectors/Down" to="." method="_on_Down_area_exited"]
-[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
-[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="timeout" from="Die" to="." method="_on_Die_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

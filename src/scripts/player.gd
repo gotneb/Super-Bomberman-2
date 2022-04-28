@@ -82,7 +82,7 @@ func take_damage() -> void:
 
 func _on_AnimatedSprite_animation_finished():
 	if $AnimatedSprite.animation == "death":
-		position = Vector2()
+		position = Vector2.ZERO
 		visible = false
 
 

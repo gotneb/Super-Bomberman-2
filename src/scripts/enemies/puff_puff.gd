@@ -1,6 +1,8 @@
 extends KinematicBody2D
 class_name PuffPuff
 
+#var type := "enemy"
+
 var direction: Vector2
 var speed := 16
 var is_alive := true
@@ -110,20 +112,16 @@ func _update_free_directions(vector: Vector2, value: bool, over_areas: int) -> v
 
 
 # ==================== DEATH =============================
-func _on_Area2D_area_entered(area):
-	if area.get_parent().get_parent() is Explosion or area.get_parent() is Explosion:
-		is_alive = false
-		$CollisionShape2D.set_deferred("disabled", true)
-		$Die.start()
-		$AnimatedSprite.play("death")
-
+func take_damage() -> void:
+	is_alive = false
+	$CollisionShape2D.set_deferred("disabled", true)
+	$Die.start()
+	$AnimatedSprite.play("death")
 
 func _on_Die_timeout():
 	queue_free()
 
-# ======================================================
-
-
+# ================= KILL PLAYER =======================
 func _on_Area2D_body_entered(body):
-	if body is Player:
+	if body.is_in_group("player"):
 		body.take_damage()

@@ -29,6 +29,6 @@ func _create_explosion() -> void:
 
 
 func _on_body_exited(body):
-	if not _hasExploded:
+	if not _hasExploded and body.is_in_group("player"):
 		$Colision.set_deferred("disabled", false)
 		body.is_inside_bomb = false

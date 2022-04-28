@@ -81,3 +81,30 @@ func _enable_stubs() -> void:
 # Bomb created explosion in your tree, so when bomb is cleaned the explosion too
 func _on_AnimatedSprite_animation_finished():
 	bomb.queue_free()
+
+
+func _on_Center_body_entered(body):
+	damage_on_player(body)
+
+
+func _on_Up_body_entered(body):
+	damage_on_player(body)
+
+
+func _on_Down_body_entered(body):
+	damage_on_player(body)
+
+
+func _on_Right_body_entered(body):
+	damage_on_player(body)
+
+
+func _on_Left_body_entered(body):
+	damage_on_player(body)
+
+
+func damage_on_player(body) -> void:
+	if body.is_in_group("player"):
+		body.take_damage()
+	if body.is_in_group("enemies"):
+		body.take_damage()
