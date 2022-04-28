@@ -49,7 +49,7 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 5.68734, 5.91584 )
 
-[sub_resource type="SpriteFrames" id=4]
+[sub_resource type="SpriteFrames" id=3]
 animations = [ {
 "frames": [ ExtResource( 16 ), ExtResource( 13 ), ExtResource( 15 ), ExtResource( 12 ), ExtResource( 14 ), ExtResource( 12 ), ExtResource( 14 ), ExtResource( 12 ), ExtResource( 14 ), ExtResource( 12 ), ExtResource( 15 ), ExtResource( 13 ), ExtResource( 16 ) ],
 "loop": true,
@@ -57,7 +57,7 @@ animations = [ {
 "speed": 13.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 7.13206, 7.02141 )
 
 [sub_resource type="RectangleShape2D" id=5]
@@ -71,7 +71,7 @@ animations = [ {
 "speed": 13.0
 } ]
 
-[sub_resource type="SpriteFrames" id=8]
+[sub_resource type="SpriteFrames" id=7]
 animations = [ {
 "frames": [ ExtResource( 8 ), ExtResource( 11 ), ExtResource( 7 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 7 ), ExtResource( 11 ), ExtResource( 8 ) ],
 "loop": true,
@@ -79,7 +79,7 @@ animations = [ {
 "speed": 13.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=7]
+[sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 5.25, 5.50005 )
 
 [sub_resource type="SpriteFrames" id=9]
@@ -121,7 +121,7 @@ script = ExtResource( 6 )
 
 [node name="Center" type="Area2D" parent="."]
 collision_layer = 4
-collision_mask = 11
+collision_mask = 75
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Center"]
 frames = SubResource( 1 )
@@ -137,13 +137,13 @@ shape = SubResource( 2 )
 visible = false
 position = Vector2( 39.6146, 40.0842 )
 collision_layer = 4
-collision_mask = 11
+collision_mask = 75
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Arms/Vertical"]
-frames = SubResource( 4 )
+frames = SubResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Arms/Vertical"]
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 disabled = true
 
 [node name="Horizontal" type="Area2D" parent="Arms" groups=[
@@ -152,7 +152,7 @@ disabled = true
 visible = false
 position = Vector2( 39.6146, 56.0842 )
 collision_layer = 4
-collision_mask = 11
+collision_mask = 75
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Arms/Horizontal"]
 shape = SubResource( 5 )
@@ -167,20 +167,20 @@ frames = SubResource( 6 )
 visible = false
 position = Vector2( 7.61464, 40.0842 )
 collision_layer = 4
-collision_mask = 11
+collision_mask = 75
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Stubs/Up"]
-frames = SubResource( 8 )
+frames = SubResource( 7 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Stubs/Up"]
-shape = SubResource( 7 )
+shape = SubResource( 8 )
 disabled = true
 
 [node name="Down" type="Area2D" parent="Stubs"]
 visible = false
 position = Vector2( 23.6146, 40.0842 )
 collision_layer = 4
-collision_mask = 11
+collision_mask = 75
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Stubs/Down"]
 frames = SubResource( 9 )
@@ -193,7 +193,7 @@ disabled = true
 visible = false
 position = Vector2( 23.6146, 56.0842 )
 collision_layer = 4
-collision_mask = 11
+collision_mask = 75
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Stubs/Right"]
 frames = SubResource( 11 )
@@ -206,7 +206,7 @@ disabled = true
 visible = false
 position = Vector2( 7.61464, 56.0842 )
 collision_layer = 4
-collision_mask = 11
+collision_mask = 75
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Stubs/Left"]
 frames = SubResource( 13 )
@@ -224,8 +224,12 @@ stream = ExtResource( 37 )
 
 [connection signal="body_entered" from="Center" to="." method="_on_Center_body_entered"]
 [connection signal="animation_finished" from="Center/AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
+[connection signal="area_entered" from="Stubs/Up" to="." method="_on_Up_area_entered"]
 [connection signal="body_entered" from="Stubs/Up" to="." method="_on_Up_body_entered"]
+[connection signal="area_entered" from="Stubs/Down" to="." method="_on_Down_area_entered"]
 [connection signal="body_entered" from="Stubs/Down" to="." method="_on_Down_body_entered"]
+[connection signal="area_entered" from="Stubs/Right" to="." method="_on_Right_area_entered"]
 [connection signal="body_entered" from="Stubs/Right" to="." method="_on_Right_body_entered"]
+[connection signal="area_entered" from="Stubs/Left" to="." method="_on_Left_area_entered"]
 [connection signal="body_entered" from="Stubs/Left" to="." method="_on_Left_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

@@ -14,7 +14,7 @@ func _on_Area2D_area_entered(area):
 
 
 func _on_AnimatedSprite_animation_finished():
-	if randi()%9 == 5 or randi()%9 == 6:
+	if randi()%9 in [2,5,3]:
 		_create_item()
 	queue_free()
 

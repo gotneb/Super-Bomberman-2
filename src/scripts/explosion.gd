@@ -106,5 +106,26 @@ func _on_Left_body_entered(body):
 func damage_on_player(body) -> void:
 	if body.is_in_group("player"):
 		body.take_damage()
-	if body.is_in_group("enemies"):
+	elif body.is_in_group("enemies"):
 		body.take_damage()
+
+
+func destroy_item(area) -> void:
+	if area is Item:
+		area.destroy()
+
+
+func _on_Left_area_entered(area):
+	destroy_item(area)
+
+
+func _on_Right_area_entered(area):
+	destroy_item(area)
+
+
+func _on_Down_area_entered(area):
+	destroy_item(area)
+
+
+func _on_Up_area_entered(area):
+	destroy_item(area)
