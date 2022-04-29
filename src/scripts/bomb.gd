@@ -12,7 +12,6 @@ func _ready():
 
 # Start explosion
 func _on_Timer_timeout():
-	#queue_free()
 	_hasExploded = true
 	$AnimatedSprite.visible = false
 	$Colision.set_deferred("disabled", true)

@@ -4,9 +4,29 @@ class_name Explosion
 var bomb
 var _createExplosion := false
 
-var right_created = []
-var right_horizontal_detected = []
-var distance := -1
+var direction = {
+	"right": {
+		"created": [],
+		"detected": [],
+		"distance": -1,
+	},
+	"left": {
+		"created": [],
+		"detected": [],
+		"distance": -1,
+	},
+	"up": {
+		"created": [],
+		"detected": [],
+		"distance": -1,
+	},
+	"down": {
+		"created": [],
+		"detected": [],
+		"distance": -1,
+	},
+}
+
 var power: int
 
 var arms = {
@@ -16,11 +36,6 @@ var arms = {
 	"down": [],
 }
 
-var detected = {
-	"left": [[], []],
-	"right": [[], []],
-}
-
 var _dir = {
 	"left": Vector2.LEFT * 16,
 	"up": Vector2.UP * 16,
@@ -28,18 +43,20 @@ var _dir = {
 	"down": Vector2.DOWN * 16,
 }
 
+
 func _ready():
 	visible = false
 	$Explosion.play(0.7)
 	_createExplosion = true
 	$Timer.start()
-	var explosions = [$Stubs/Left, $Stubs/Up, $Stubs/Right, $Stubs/Down, $Arms/Horizontal, $Arms/Vertical]
+	$EnableStubs.start()
+	var explosions = [$Stubs/Left, $Stubs/Up, $Stubs/Right, $Stubs/Down, $Arms/HorizontalLeft, $Arms/HorizontalRight, $Arms/VerticalUp, $Arms/VerticalDown]
 	for s in explosions:
 		s.position = Vector2.ZERO
 
 
 func _start_animations() -> void:
-	var nodes = [$Stubs/Up, $Stubs/Down, $Stubs/Left, $Stubs/Right, $Arms/Vertical, $Arms/Horizontal, $Center]
+	var nodes = [$Stubs/Up, $Stubs/Down, $Stubs/Left, $Stubs/Right, $Arms/VerticalUp, $Arms/VerticalDown, $Arms/HorizontalLeft, $Arms/HorizontalRight, $Center]
 	for i in nodes:
 		i.get_node("AnimatedSprite").play("default")
 
@@ -57,48 +74,41 @@ func _process(delta: float) -> void:
 		_createExplosion = false
 		_start_animations()
 		var elem = {
-			"up": [$Stubs/Up, $Arms/Vertical],
-			"left": [$Stubs/Left, $Arms/Horizontal],
-			"right": [$Stubs/Right, $Arms/Horizontal],
-			"down": [$Stubs/Down, $Arms/Vertical]
+			"up": [$Stubs/Up, $Arms/VerticalUp],
+			"left": [$Stubs/Left, $Arms/HorizontalLeft],
+			"right": [$Stubs/Right, $Arms/HorizontalRight],
+			"down": [$Stubs/Down, $Arms/VerticalDown]
 		}
 		for i in range(1, power + 1):
-			# Creates stubs' explosion
-			var t := "right"
-			if i == power:
-				elem[t][0].position = $Center.position + i * _dir[t]
-				right_created.append(elem[t][0])
-				print("created")
-			else:
-				arms[t].append(_create_node(elem[t][1], i * + _dir[t]))
-				$".".add_child(arms[t][i-1])
-				right_created.append(arms[t][i-1])
-
-		_enable_stubs()
+			for t in ["left", "right", "up", "down"]:
+				# Creates stubs' explosion
+				if i == power:
+					elem[t][0].position = $Center.position + i * _dir[t]
+					direction[t]["created"].append(elem[t][0])
+				# Creates arm's explosion
+				else:
+					arms[t].append(_create_node(elem[t][1], i * + _dir[t]))
+					$".".add_child(arms[t][i-1])
+					direction[t]["created"].append(arms[t][i-1])
 
 
 func _on_Timer_timeout():
-	if right_horizontal_detected.size() == 0:
-		for i in right_created:
-			i.visible = true
-	else:
-	# Some block has been captured
-		right_horizontal_detected.append(right_horizontal_detected[0])
-		right_horizontal_detected.remove(0)
-		for i in range(0, distance - 1):
-			right_created[i].visible = true
-		right_horizontal_detected[0].destroy()
+	for t in ["left", "right", "up", "down"]:
+		setup(t)
 
-	print("right catched: ", right_horizontal_detected.size())
 	visible = true
 
 
-# By default, all stubs are invisble and disabled colision
-func _enable_stubs() -> void:
-	var stubs =  [$Stubs/Up, $Stubs/Down, $Stubs/Left, $Stubs/Right]
-	$Stubs.visible = true
-	for i in stubs:
-		i.get_node("CollisionShape2D").set_deferred("disabled", false)
+func setup(d: String) -> void:
+	# None black hasn't been captured
+	if direction[d]["detected"].size() == 0:
+		for i in direction[d]["created"]:
+			i.visible = true
+	# Some block has been captured
+	else:
+		for i in range(0, direction[d]["distance"] - 1):
+			direction[d]["created"][i].visible = true
+		direction[d]["detected"][0].destroy()
 
 
 # Bomb created explosion in your tree, so when bomb is cleaned the explosion too
@@ -107,36 +117,55 @@ func _on_AnimatedSprite_animation_finished():
 
 
 # ============= TAKE DAMAGE WHEN SOMETHING ENTER ===============
-func take_damage(body) -> void:
+func take_damage(body, d: String) -> void:
 	if body.is_in_group("blocks"):
-		right_horizontal_detected.append(body)
-		var measure = abs(body.position.x - $Center.global_position.x) / 16
-		if distance == -1 or measure < distance:
-			distance = measure
-	elif body.is_in_group("player"):
-		body.take_damage()
-	elif body.is_in_group("enemies"):
+		direction[d]["detected"].append(body)
+		var measure := 0
+		if d in ["left", "right"]:
+			measure = abs(body.position.x - $Center.global_position.x) / 16
+		else:
+			measure = round(abs(body.position.y - $Center.global_position.y + 1) / 16)
+		# -1 means first time, because the distance cannot be negative
+		if direction[d]["distance"] == -1 or measure < direction[d]["distance"]:
+			direction[d]["distance"] = measure
+	elif body.is_in_group("player") or body.is_in_group("enemies"):
 		body.take_damage()
 
 
 func _on_Center_body_entered(body):
-	take_damage(body)
+	#take_damage(body)
+	pass
 
 
 func _on_Up_body_entered(body):
-	take_damage(body)
+	take_damage(body, "up")
 
 
 func _on_Down_body_entered(body):
-	take_damage(body)
+	take_damage(body, "down")
+
+
+func _on_VerticalUp_body_entered(body):
+	take_damage(body, "up")
+
+
+func _on_VerticalDown_body_entered(body):
+	take_damage(body, "down")
 
 
 func _on_Right_body_entered(body):
-	take_damage(body)
+	take_damage(body, "right")
 
 
 func _on_Left_body_entered(body):
-	take_damage(body)
+	take_damage(body, "left")
+
+func _on_HorizontalLeft_body_entered(body):
+	take_damage(body, "left")
+
+
+func _on_HorizontalRight_body_entered(body):
+	take_damage(body, "right")
 # =======================================================
 
 # ================= DESTROY ITEM =========================
@@ -161,6 +190,16 @@ func _on_Up_area_entered(area):
 	destroy_item(area)
 
 
-func _on_Horizontal_body_entered(body):
-	take_damage(body)
 # =======================================
+# By default, all stubs are invisble and disabled colision
+func _enable_stubs() -> void:
+	var stubs =  [$Stubs/Up, $Stubs/Down, $Stubs/Left, $Stubs/Right]
+	$Stubs.visible = true
+	for i in stubs:
+		i.get_node("CollisionShape2D").set_deferred("disabled", false)
+
+
+# Abling stubs after enabling arms takes a short time, so when exploded,
+# The stubs they arent detecting blocks  
+func _on_EnableStubs_timeout():
+	_enable_stubs()

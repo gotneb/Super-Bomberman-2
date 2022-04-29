@@ -15,6 +15,9 @@ extents = Vector2( 8, 8 )
 collision_layer = 8
 collision_mask = 7
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="Area2D" type="Area2D" parent="." groups=[
 "blocks",
@@ -36,5 +39,3 @@ texture = ExtResource( 1 )
 "blocks",
 ]]
 shape = SubResource( 2 )
-
-[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]

@@ -1384,73 +1384,72 @@ tile_data = PoolIntArray( 11, 0, 0, 12, 1, 0, 13, 2, 0, 65547, 3, 0, 65548, 4, 0
 rect_scale = Vector2( 0.34, 0.34 )
 
 [node name="Blocks" type="Node2D" parent="."]
-position = Vector2( 0, 20 )
 
 [node name="Block" parent="Blocks" instance=ExtResource( 9 )]
-position = Vector2( 88, 72 )
+position = Vector2( 88, 92 )
 
 [node name="Block2" parent="Blocks" instance=ExtResource( 9 )]
-position = Vector2( 56, 72 )
+position = Vector2( 56, 92 )
 
 [node name="Block3" parent="Blocks" instance=ExtResource( 9 )]
-position = Vector2( 56, 40 )
+position = Vector2( 56, 60 )
 
 [node name="Block4" parent="Blocks" instance=ExtResource( 9 )]
-position = Vector2( 88, 40 )
+position = Vector2( 88, 60 )
 
 [node name="Block5" parent="Blocks" instance=ExtResource( 9 )]
-position = Vector2( 120, 40 )
+position = Vector2( 120, 60 )
 
 [node name="Block6" parent="Blocks" instance=ExtResource( 9 )]
-position = Vector2( 120, 72 )
+position = Vector2( 120, 92 )
 
 [node name="Block7" parent="Blocks" instance=ExtResource( 9 )]
-position = Vector2( 152, 72 )
+position = Vector2( 152, 60 )
 
 [node name="Block8" parent="Blocks" instance=ExtResource( 9 )]
-position = Vector2( 152, 40 )
+position = Vector2( 152, 92 )
 
 [node name="Block9" parent="Blocks" instance=ExtResource( 9 )]
-position = Vector2( 184, 72 )
+position = Vector2( 184, 92 )
 
 [node name="Block10" parent="Blocks" instance=ExtResource( 9 )]
-position = Vector2( 216, 72 )
+position = Vector2( 216, 92 )
 
 [node name="Block11" parent="Blocks" instance=ExtResource( 9 )]
-position = Vector2( 216, 136 )
+position = Vector2( 216, 156 )
 
 [node name="Block12" parent="Blocks" instance=ExtResource( 9 )]
-position = Vector2( 216, 168 )
+position = Vector2( 216, 188 )
 
 [node name="Block13" parent="Blocks" instance=ExtResource( 9 )]
-position = Vector2( 184, 168 )
+position = Vector2( 184, 188 )
 
 [node name="Block14" parent="Blocks" instance=ExtResource( 9 )]
-position = Vector2( 184, 136 )
+position = Vector2( 184, 156 )
 
 [node name="Block15" parent="Blocks" instance=ExtResource( 9 )]
-position = Vector2( 152, 136 )
+position = Vector2( 152, 156 )
 
 [node name="Block16" parent="Blocks" instance=ExtResource( 9 )]
-position = Vector2( 120, 136 )
+position = Vector2( 120, 156 )
 
 [node name="Block17" parent="Blocks" instance=ExtResource( 9 )]
-position = Vector2( 152, 168 )
+position = Vector2( 152, 188 )
 
 [node name="Block18" parent="Blocks" instance=ExtResource( 9 )]
-position = Vector2( 120, 168 )
+position = Vector2( 120, 188 )
 
 [node name="Block19" parent="Blocks" instance=ExtResource( 9 )]
-position = Vector2( 88, 168 )
+position = Vector2( 88, 188 )
 
 [node name="Block20" parent="Blocks" instance=ExtResource( 9 )]
-position = Vector2( 88, 136 )
+position = Vector2( 88, 156 )
 
 [node name="Block21" parent="Blocks" instance=ExtResource( 9 )]
-position = Vector2( 56, 136 )
+position = Vector2( 56, 156 )
 
 [node name="Block22" parent="Blocks" instance=ExtResource( 9 )]
-position = Vector2( 56, 168 )
+position = Vector2( 56, 188 )
 
 [node name="Chests" type="Node2D" parent="."]
 
@@ -1551,13 +1550,13 @@ position = Vector2( 232, 76 )
 position = Vector2( 181.524, 103.647 )
 
 [node name="Puff Puff2" parent="Enemies" instance=ExtResource( 11 )]
-position = Vector2( 216.332, 167.523 )
+position = Vector2( 216, 168 )
 
 [node name="Puff Puff3" parent="Enemies" instance=ExtResource( 11 )]
 position = Vector2( 39.556, 104.06 )
 
 [node name="Player" parent="." instance=ExtResource( 7 )]
-position = Vector2( 89.5, 211.5 )
+position = Vector2( 136.625, 178.625 )
 
 [node name="Invisible Blocks" type="Node2D" parent="."]
 visible = false

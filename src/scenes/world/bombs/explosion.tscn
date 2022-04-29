@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=2]
+[gd_scene load_steps=56 format=2]
 
 [ext_resource path="res://assets/bombs/common/exploding/center/0.png" type="Texture" id=1]
 [ext_resource path="res://assets/bombs/common/exploding/center/1.png" type="Texture" id=2]
@@ -43,18 +43,29 @@ animations = [ {
 "frames": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 2 ), ExtResource( 1 ) ],
 "loop": true,
 "name": "default",
-"speed": 13.0
+"speed": 22.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 5.68734, 5.91584 )
+
+[sub_resource type="SpriteFrames" id=17]
+animations = [ {
+"frames": [ ExtResource( 16 ), ExtResource( 13 ), ExtResource( 15 ), ExtResource( 12 ), ExtResource( 14 ), ExtResource( 12 ), ExtResource( 14 ), ExtResource( 12 ), ExtResource( 14 ), ExtResource( 12 ), ExtResource( 15 ), ExtResource( 13 ), ExtResource( 16 ) ],
+"loop": true,
+"name": "default",
+"speed": 22.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=18]
+extents = Vector2( 4.24313, 6.55515 )
 
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
 "frames": [ ExtResource( 16 ), ExtResource( 13 ), ExtResource( 15 ), ExtResource( 12 ), ExtResource( 14 ), ExtResource( 12 ), ExtResource( 14 ), ExtResource( 12 ), ExtResource( 14 ), ExtResource( 12 ), ExtResource( 15 ), ExtResource( 13 ), ExtResource( 16 ) ],
 "loop": true,
 "name": "default",
-"speed": 13.0
+"speed": 22.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=4]
@@ -65,18 +76,29 @@ animations = [ {
 "frames": [ ExtResource( 22 ), ExtResource( 23 ), ExtResource( 26 ), ExtResource( 25 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 23 ), ExtResource( 22 ) ],
 "loop": true,
 "name": "default",
-"speed": 13.0
+"speed": 22.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 6.64091, 4.25005 )
+
+[sub_resource type="SpriteFrames" id=15]
+animations = [ {
+"frames": [ ExtResource( 22 ), ExtResource( 23 ), ExtResource( 26 ), ExtResource( 25 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 23 ), ExtResource( 22 ) ],
+"loop": true,
+"name": "default",
+"speed": 22.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=16]
+extents = Vector2( 5.81406, 4.02518 )
 
 [sub_resource type="SpriteFrames" id=7]
 animations = [ {
 "frames": [ ExtResource( 8 ), ExtResource( 11 ), ExtResource( 7 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 7 ), ExtResource( 11 ), ExtResource( 8 ) ],
 "loop": true,
 "name": "default",
-"speed": 13.0
+"speed": 22.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=8]
@@ -87,7 +109,7 @@ animations = [ {
 "frames": [ ExtResource( 17 ), ExtResource( 21 ), ExtResource( 18 ), ExtResource( 20 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 18 ), ExtResource( 21 ), ExtResource( 17 ) ],
 "loop": true,
 "name": "default",
-"speed": 13.0
+"speed": 22.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=10]
@@ -98,7 +120,7 @@ animations = [ {
 "frames": [ ExtResource( 27 ), ExtResource( 31 ), ExtResource( 29 ), ExtResource( 30 ), ExtResource( 28 ), ExtResource( 30 ), ExtResource( 28 ), ExtResource( 30 ), ExtResource( 28 ), ExtResource( 30 ), ExtResource( 29 ), ExtResource( 31 ), ExtResource( 27 ) ],
 "loop": true,
 "name": "default",
-"speed": 13.0
+"speed": 22.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=12]
@@ -109,7 +131,7 @@ animations = [ {
 "frames": [ ExtResource( 35 ), ExtResource( 34 ), ExtResource( 33 ), ExtResource( 36 ), ExtResource( 32 ), ExtResource( 36 ), ExtResource( 32 ), ExtResource( 36 ), ExtResource( 32 ), ExtResource( 36 ), ExtResource( 33 ), ExtResource( 34 ), ExtResource( 35 ) ],
 "loop": true,
 "name": "default",
-"speed": 13.0
+"speed": 22.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=14]
@@ -131,7 +153,23 @@ shape = SubResource( 2 )
 
 [node name="Arms" type="Node2D" parent="."]
 
-[node name="Vertical" type="Area2D" parent="Arms" groups=[
+[node name="VerticalUp" type="Area2D" parent="Arms"]
+visible = false
+position = Vector2( 71.241, 39.9515 )
+collision_layer = 4
+collision_mask = 75
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Arms/VerticalUp"]
+frames = SubResource( 17 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Arms/VerticalUp"]
+shape = SubResource( 18 )
+disabled = true
+
+[node name="VerticalDown" type="Area2D" parent="Arms" groups=[
 "vertical_arm",
 ]]
 visible = false
@@ -142,14 +180,14 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="Arms/Vertical"]
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Arms/VerticalDown"]
 frames = SubResource( 3 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Arms/Vertical"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Arms/VerticalDown"]
 shape = SubResource( 4 )
 disabled = true
 
-[node name="Horizontal" type="Area2D" parent="Arms" groups=[
+[node name="HorizontalLeft" type="Area2D" parent="Arms" groups=[
 "horizontal_arm",
 ]]
 visible = false
@@ -160,12 +198,28 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="Arms/Horizontal"]
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Arms/HorizontalLeft"]
 frames = SubResource( 5 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Arms/Horizontal"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Arms/HorizontalLeft"]
 position = Vector2( 3.8147e-05, -4.57764e-05 )
 shape = SubResource( 6 )
+disabled = true
+
+[node name="HorizontalRight" type="Area2D" parent="Arms"]
+visible = false
+position = Vector2( 71.6146, 56.0842 )
+collision_layer = 4
+collision_mask = 75
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Arms/HorizontalRight"]
+frames = SubResource( 15 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Arms/HorizontalRight"]
+shape = SubResource( 16 )
 disabled = true
 
 [node name="Stubs" type="Node2D" parent="."]
@@ -241,9 +295,16 @@ one_shot = true
 [node name="Explosion" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 37 )
 
+[node name="EnableStubs" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
 [connection signal="body_entered" from="Center" to="." method="_on_Center_body_entered"]
 [connection signal="animation_finished" from="Center/AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
-[connection signal="body_entered" from="Arms/Horizontal" to="." method="_on_Horizontal_body_entered"]
+[connection signal="body_entered" from="Arms/VerticalUp" to="." method="_on_VerticalUp_body_entered"]
+[connection signal="body_entered" from="Arms/VerticalDown" to="." method="_on_VerticalDown_body_entered"]
+[connection signal="body_entered" from="Arms/HorizontalLeft" to="." method="_on_HorizontalLeft_body_entered"]
+[connection signal="body_entered" from="Arms/HorizontalRight" to="." method="_on_HorizontalRight_body_entered"]
 [connection signal="area_entered" from="Stubs/Up" to="." method="_on_Up_area_entered"]
 [connection signal="body_entered" from="Stubs/Up" to="." method="_on_Up_body_entered"]
 [connection signal="area_entered" from="Stubs/Down" to="." method="_on_Down_area_entered"]
@@ -253,3 +314,4 @@ stream = ExtResource( 37 )
 [connection signal="area_entered" from="Stubs/Left" to="." method="_on_Left_area_entered"]
 [connection signal="body_entered" from="Stubs/Left" to="." method="_on_Left_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="EnableStubs" to="." method="_on_EnableStubs_timeout"]
