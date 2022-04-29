@@ -4,7 +4,7 @@ class_name Player
 var speed := 25
 var lifes := 2
 var bombs := 1
-var fire := 1
+var fire := 3
 var stage: Node2D
 
 var is_weak:= false
@@ -61,7 +61,7 @@ func _put_bomb() -> void:
 	bomb.player = self
 	bomb.power = fire
 	var x:= (int(position.x) / 16) * 16 + 8
-	var y:= (int(position.y) / 16) * 16 + 3
+	var y:= (int(position.y) / 16) * 16 + 4
 	bomb.position = Vector2(x, y)
 	stage.get_node("Bombs").add_child(bomb)
 

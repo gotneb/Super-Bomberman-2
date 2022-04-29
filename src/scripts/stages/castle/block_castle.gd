@@ -6,10 +6,11 @@ func _ready():
 
 
 func _on_Area2D_area_entered(area):
-	if area.is_in_group("vertical_arm"):
-		_remove_elements(["up", "down"], area)
-	if area.is_in_group("horizontal_arm"):
-		_remove_elements(["left", "right"], area)
+	pass
+	#if area.is_in_group("vertical_arm"):
+		#_remove_elements(["up", "down"], area)
+	#if area.is_in_group("horizontal_arm"):
+		#_remove_elements(["left", "right"], area)
 
 
 func _remove_elements(keys: Array, area: Area2D):

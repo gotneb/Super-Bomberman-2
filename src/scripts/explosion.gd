@@ -4,11 +4,21 @@ class_name Explosion
 var bomb
 var _createExplosion := false
 
+var right_created = []
+var right_horizontal_detected = []
+var distance := -1
+var power: int
+
 var arms = {
 	"left": [],
 	"up": [],
 	"right": [],
 	"down": [],
+}
+
+var detected = {
+	"left": [[], []],
+	"right": [[], []],
 }
 
 var _dir = {
@@ -18,50 +28,14 @@ var _dir = {
 	"down": Vector2.DOWN * 16,
 }
 
-var power: int
-
 func _ready():
 	visible = false
-	$Timer.start()
-	$Arms/Horizontal.position = Vector2.ZERO
-	$Arms/Vertical.position = Vector2.ZERO
-
-
-func _process(delta: float) -> void:
-	if _createExplosion:
-		_enable_stubs()
-		_start_animations()
-		for i in range(1, power + 1):
-			var elem = {
-			"up": [$Stubs/Up, $Arms/Vertical],
-			"left": [$Stubs/Left, $Arms/Horizontal],
-			"right": [$Stubs/Right, $Arms/Horizontal],
-			"down": [$Stubs/Down, $Arms/Vertical]
-			}
-			# Create stubs' explosion
-			if i == power:
-				for key in elem:
-					elem[key][0].position = $Center.position + i * _dir[key]
-			# Create arms' explosion
-			else:
-				for key in elem:
-					arms[key].append(_create_node(elem[key][1], i * + _dir[key]))
-					$".".add_child(arms[key][i -1])
-		_createExplosion = false
-
-
-func _on_Timer_timeout():
 	$Explosion.play(0.7)
 	_createExplosion = true
-	visible = true
-
-
-func _create_node(arm: Node2D, pos: Vector2) -> Node2D:
-	var node = arm.duplicate()
-	node.position = pos
-	node.visible = true
-	node.get_node("CollisionShape2D").set_deferred("disabled", false)
-	return node
+	$Timer.start()
+	var explosions = [$Stubs/Left, $Stubs/Up, $Stubs/Right, $Stubs/Down, $Arms/Horizontal, $Arms/Vertical]
+	for s in explosions:
+		s.position = Vector2.ZERO
 
 
 func _start_animations() -> void:
@@ -70,11 +44,60 @@ func _start_animations() -> void:
 		i.get_node("AnimatedSprite").play("default")
 
 
+func _create_node(arm: Node2D, pos: Vector2) -> Node2D:
+	var node = arm.duplicate()
+	node.position = pos
+	node.visible = false
+	node.get_node("CollisionShape2D").set_deferred("disabled", false)
+	return node
+
+
+func _process(delta: float) -> void:
+	if _createExplosion:
+		_createExplosion = false
+		_start_animations()
+		var elem = {
+			"up": [$Stubs/Up, $Arms/Vertical],
+			"left": [$Stubs/Left, $Arms/Horizontal],
+			"right": [$Stubs/Right, $Arms/Horizontal],
+			"down": [$Stubs/Down, $Arms/Vertical]
+		}
+		for i in range(1, power + 1):
+			# Creates stubs' explosion
+			var t := "right"
+			if i == power:
+				elem[t][0].position = $Center.position + i * _dir[t]
+				right_created.append(elem[t][0])
+				print("created")
+			else:
+				arms[t].append(_create_node(elem[t][1], i * + _dir[t]))
+				$".".add_child(arms[t][i-1])
+				right_created.append(arms[t][i-1])
+
+		_enable_stubs()
+
+
+func _on_Timer_timeout():
+	if right_horizontal_detected.size() == 0:
+		for i in right_created:
+			i.visible = true
+	else:
+	# Some block has been captured
+		right_horizontal_detected.append(right_horizontal_detected[0])
+		right_horizontal_detected.remove(0)
+		for i in range(0, distance - 1):
+			right_created[i].visible = true
+		right_horizontal_detected[0].destroy()
+
+	print("right catched: ", right_horizontal_detected.size())
+	visible = true
+
+
 # By default, all stubs are invisble and disabled colision
 func _enable_stubs() -> void:
 	var stubs =  [$Stubs/Up, $Stubs/Down, $Stubs/Left, $Stubs/Right]
+	$Stubs.visible = true
 	for i in stubs:
-		i.visible = true
 		i.get_node("CollisionShape2D").set_deferred("disabled", false)
 
 
@@ -83,33 +106,40 @@ func _on_AnimatedSprite_animation_finished():
 	bomb.queue_free()
 
 
-func _on_Center_body_entered(body):
-	damage_on_player(body)
-
-
-func _on_Up_body_entered(body):
-	damage_on_player(body)
-
-
-func _on_Down_body_entered(body):
-	damage_on_player(body)
-
-
-func _on_Right_body_entered(body):
-	damage_on_player(body)
-
-
-func _on_Left_body_entered(body):
-	damage_on_player(body)
-
-
-func damage_on_player(body) -> void:
-	if body.is_in_group("player"):
+# ============= TAKE DAMAGE WHEN SOMETHING ENTER ===============
+func take_damage(body) -> void:
+	if body.is_in_group("blocks"):
+		right_horizontal_detected.append(body)
+		var measure = abs(body.position.x - $Center.global_position.x) / 16
+		if distance == -1 or measure < distance:
+			distance = measure
+	elif body.is_in_group("player"):
 		body.take_damage()
 	elif body.is_in_group("enemies"):
 		body.take_damage()
 
 
+func _on_Center_body_entered(body):
+	take_damage(body)
+
+
+func _on_Up_body_entered(body):
+	take_damage(body)
+
+
+func _on_Down_body_entered(body):
+	take_damage(body)
+
+
+func _on_Right_body_entered(body):
+	take_damage(body)
+
+
+func _on_Left_body_entered(body):
+	take_damage(body)
+# =======================================================
+
+# ================= DESTROY ITEM =========================
 func destroy_item(area) -> void:
 	if area is Item:
 		area.destroy()
@@ -129,3 +159,8 @@ func _on_Down_area_entered(area):
 
 func _on_Up_area_entered(area):
 	destroy_item(area)
+
+
+func _on_Horizontal_body_entered(body):
+	take_damage(body)
+# =======================================

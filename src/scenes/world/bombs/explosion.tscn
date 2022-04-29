@@ -58,18 +58,18 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 7.13206, 7.02141 )
+extents = Vector2( 4.07073, 7.02141 )
 
-[sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 6.64091, 7.00609 )
-
-[sub_resource type="SpriteFrames" id=6]
+[sub_resource type="SpriteFrames" id=5]
 animations = [ {
 "frames": [ ExtResource( 22 ), ExtResource( 23 ), ExtResource( 26 ), ExtResource( 25 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 23 ), ExtResource( 22 ) ],
 "loop": true,
 "name": "default",
 "speed": 13.0
 } ]
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 6.64091, 4.25005 )
 
 [sub_resource type="SpriteFrames" id=7]
 animations = [ {
@@ -135,9 +135,12 @@ shape = SubResource( 2 )
 "vertical_arm",
 ]]
 visible = false
-position = Vector2( 39.6146, 40.0842 )
+position = Vector2( 47.6146, 40.0842 )
 collision_layer = 4
 collision_mask = 75
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Arms/Vertical"]
 frames = SubResource( 3 )
@@ -150,16 +153,20 @@ disabled = true
 "horizontal_arm",
 ]]
 visible = false
-position = Vector2( 39.6146, 56.0842 )
+position = Vector2( 47.6146, 56.0842 )
 collision_layer = 4
 collision_mask = 75
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Arms/Horizontal"]
-shape = SubResource( 5 )
-disabled = true
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Arms/Horizontal"]
-frames = SubResource( 6 )
+frames = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Arms/Horizontal"]
+position = Vector2( 3.8147e-05, -4.57764e-05 )
+shape = SubResource( 6 )
+disabled = true
 
 [node name="Stubs" type="Node2D" parent="."]
 
@@ -168,6 +175,9 @@ visible = false
 position = Vector2( 7.61464, 40.0842 )
 collision_layer = 4
 collision_mask = 75
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Stubs/Up"]
 frames = SubResource( 7 )
@@ -181,6 +191,9 @@ visible = false
 position = Vector2( 23.6146, 40.0842 )
 collision_layer = 4
 collision_mask = 75
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Stubs/Down"]
 frames = SubResource( 9 )
@@ -194,6 +207,9 @@ visible = false
 position = Vector2( 23.6146, 56.0842 )
 collision_layer = 4
 collision_mask = 75
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Stubs/Right"]
 frames = SubResource( 11 )
@@ -207,6 +223,9 @@ visible = false
 position = Vector2( 7.61464, 56.0842 )
 collision_layer = 4
 collision_mask = 75
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Stubs/Left"]
 frames = SubResource( 13 )
@@ -216,7 +235,7 @@ shape = SubResource( 14 )
 disabled = true
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.2
+wait_time = 0.15
 one_shot = true
 
 [node name="Explosion" type="AudioStreamPlayer" parent="."]
@@ -224,6 +243,7 @@ stream = ExtResource( 37 )
 
 [connection signal="body_entered" from="Center" to="." method="_on_Center_body_entered"]
 [connection signal="animation_finished" from="Center/AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
+[connection signal="body_entered" from="Arms/Horizontal" to="." method="_on_Horizontal_body_entered"]
 [connection signal="area_entered" from="Stubs/Up" to="." method="_on_Up_area_entered"]
 [connection signal="body_entered" from="Stubs/Up" to="." method="_on_Up_body_entered"]
 [connection signal="area_entered" from="Stubs/Down" to="." method="_on_Down_area_entered"]
