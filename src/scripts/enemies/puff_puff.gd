@@ -17,6 +17,7 @@ var is_free = {
 	Vector2.DOWN: true,
 }
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	direction = sort_direction()
@@ -115,11 +116,14 @@ func _update_free_directions(vector: Vector2, value: bool, over_areas: int) -> v
 func take_damage() -> void:
 	is_alive = false
 	$CollisionShape2D.set_deferred("disabled", true)
+	$Area2D/CollisionShape2D.set_deferred("disabled", true)
 	$Die.start()
 	$AnimatedSprite.play("death")
 
+
 func _on_Die_timeout():
 	queue_free()
+
 
 # ================= KILL PLAYER =======================
 func _on_Area2D_body_entered(body):

@@ -100,9 +100,6 @@ func _on_Timer_timeout():
 	for t in ["left", "right", "up", "down"]:
 		setup(t)
 
-	#print("Down blocks:")
-	#for b in direction["down"]["detected"]:
-	#	print(b.name)
 	visible = true
 
 
@@ -130,9 +127,9 @@ func setup(d: String) -> void:
 
 # ============= TAKE DAMAGE WHEN SOMETHING ENTER ===============
 func take_damage(body, d: String) -> void:
-	if body.is_in_group("blocks") or body is Item:
-		if d == "down":
-			print("Added: ", body.name)
+	if body.is_in_group("bomb"):
+		body.force_explode()
+	elif body.is_in_group("blocks") or body is Item:
 		direction[d]["detected"].append(body)
 		var measure := 0
 		if d in ["left", "right"]:

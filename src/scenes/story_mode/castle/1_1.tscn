@@ -1556,7 +1556,7 @@ position = Vector2( 184, 168 )
 position = Vector2( 39.556, 104.06 )
 
 [node name="Player" parent="." instance=ExtResource( 7 )]
-position = Vector2( 168, 116.5 )
+position = Vector2( 137.5, 178.5 )
 
 [node name="Invisible Blocks" type="Node2D" parent="."]
 visible = false

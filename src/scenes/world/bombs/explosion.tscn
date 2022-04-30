@@ -137,7 +137,9 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=18]
 extents = Vector2( 5.5, 4.75005 )
 
-[node name="Explosion" type="Node2D"]
+[node name="Explosion" type="Node2D" groups=[
+"explosion",
+]]
 position = Vector2( 0.385361, -0.084156 )
 script = ExtResource( 6 )
 
@@ -145,156 +147,216 @@ script = ExtResource( 6 )
 collision_layer = 4
 collision_mask = 75
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="Center"]
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Center" groups=[
+"explosion",
+]]
 frames = SubResource( 1 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Center"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Center" groups=[
+"explosion",
+]]
 shape = SubResource( 2 )
 
-[node name="Arms" type="Node2D" parent="."]
+[node name="Arms" type="Node2D" parent="." groups=[
+"explosion",
+]]
 
-[node name="VerticalUp" type="Area2D" parent="Arms"]
+[node name="VerticalUp" type="Area2D" parent="Arms" groups=[
+"explosion",
+]]
 visible = false
 position = Vector2( 71.241, 39.9515 )
 collision_layer = 4
-collision_mask = 75
+collision_mask = 107
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="Arms/VerticalUp"]
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Arms/VerticalUp" groups=[
+"explosion",
+]]
 frames = SubResource( 3 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Arms/VerticalUp"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Arms/VerticalUp" groups=[
+"explosion",
+]]
 shape = SubResource( 4 )
 disabled = true
 
 [node name="VerticalDown" type="Area2D" parent="Arms" groups=[
+"explosion",
 "vertical_arm",
 ]]
 visible = false
 position = Vector2( 47.6146, 40.0842 )
 collision_layer = 4
-collision_mask = 75
+collision_mask = 107
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="Arms/VerticalDown"]
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Arms/VerticalDown" groups=[
+"explosion",
+]]
 frames = SubResource( 5 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Arms/VerticalDown"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Arms/VerticalDown" groups=[
+"explosion",
+]]
 shape = SubResource( 6 )
 
 [node name="HorizontalLeft" type="Area2D" parent="Arms" groups=[
+"explosion",
 "horizontal_arm",
 ]]
 visible = false
 position = Vector2( 47.6146, 56.0842 )
 collision_layer = 4
-collision_mask = 75
+collision_mask = 107
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="Arms/HorizontalLeft"]
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Arms/HorizontalLeft" groups=[
+"explosion",
+]]
 frames = SubResource( 7 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Arms/HorizontalLeft"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Arms/HorizontalLeft" groups=[
+"explosion",
+]]
 position = Vector2( 3.8147e-05, -4.57764e-05 )
 shape = SubResource( 8 )
 disabled = true
 
-[node name="HorizontalRight" type="Area2D" parent="Arms"]
+[node name="HorizontalRight" type="Area2D" parent="Arms" groups=[
+"explosion",
+]]
 visible = false
 position = Vector2( 71.6146, 56.0842 )
 collision_layer = 4
-collision_mask = 75
+collision_mask = 107
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="Arms/HorizontalRight"]
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Arms/HorizontalRight" groups=[
+"explosion",
+]]
 frames = SubResource( 9 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Arms/HorizontalRight"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Arms/HorizontalRight" groups=[
+"explosion",
+]]
 shape = SubResource( 10 )
 disabled = true
 
-[node name="Stubs" type="Node2D" parent="."]
+[node name="Stubs" type="Node2D" parent="." groups=[
+"explosion",
+]]
 
-[node name="Up" type="Area2D" parent="Stubs"]
+[node name="Up" type="Area2D" parent="Stubs" groups=[
+"explosion",
+]]
 visible = false
 position = Vector2( 7.61464, 40.0842 )
 collision_layer = 4
-collision_mask = 75
+collision_mask = 107
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="Stubs/Up"]
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Stubs/Up" groups=[
+"explosion",
+]]
 frames = SubResource( 11 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Stubs/Up"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stubs/Up" groups=[
+"explosion",
+]]
 shape = SubResource( 12 )
 disabled = true
 
-[node name="Down" type="Area2D" parent="Stubs"]
+[node name="Down" type="Area2D" parent="Stubs" groups=[
+"explosion",
+]]
 visible = false
 position = Vector2( 23.6146, 40.0842 )
 collision_layer = 4
-collision_mask = 75
+collision_mask = 107
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="Stubs/Down"]
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Stubs/Down" groups=[
+"explosion",
+]]
 frames = SubResource( 13 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Stubs/Down"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stubs/Down" groups=[
+"explosion",
+]]
 shape = SubResource( 14 )
 disabled = true
 
-[node name="Right" type="Area2D" parent="Stubs"]
+[node name="Right" type="Area2D" parent="Stubs" groups=[
+"explosion",
+]]
 visible = false
 position = Vector2( 23.6146, 56.0842 )
 collision_layer = 4
-collision_mask = 75
+collision_mask = 107
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="Stubs/Right"]
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Stubs/Right" groups=[
+"explosion",
+]]
 frames = SubResource( 15 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Stubs/Right"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stubs/Right" groups=[
+"explosion",
+]]
 shape = SubResource( 16 )
 disabled = true
 
-[node name="Left" type="Area2D" parent="Stubs"]
+[node name="Left" type="Area2D" parent="Stubs" groups=[
+"explosion",
+]]
 visible = false
 position = Vector2( 7.61464, 56.0842 )
 collision_layer = 4
-collision_mask = 75
+collision_mask = 107
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="Stubs/Left"]
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Stubs/Left" groups=[
+"explosion",
+]]
 frames = SubResource( 17 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Stubs/Left"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stubs/Left" groups=[
+"explosion",
+]]
 shape = SubResource( 18 )
 disabled = true
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." groups=[
+"explosion",
+]]
 wait_time = 0.15
 one_shot = true
 
-[node name="Explosion" type="AudioStreamPlayer" parent="."]
+[node name="Explosion" type="AudioStreamPlayer" parent="." groups=[
+"explosion",
+]]
 stream = ExtResource( 37 )
 
-[node name="EnableStubs" type="Timer" parent="."]
+[node name="EnableStubs" type="Timer" parent="." groups=[
+"explosion",
+]]
 wait_time = 0.1
 one_shot = true
 

@@ -3,8 +3,8 @@ class_name Player
 
 var speed := 25
 var lifes := 2
-var bombs := 1
-var fire := 3
+var bombs := 2
+var fire := 1
 var stage: Node2D
 
 var is_weak:= false

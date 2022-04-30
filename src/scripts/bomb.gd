@@ -10,12 +10,16 @@ func _ready():
 	$Timer.start()
 
 
-# Start explosion
-func _on_Timer_timeout():
+func _start_explosion() -> void:
 	_hasExploded = true
 	$AnimatedSprite.visible = false
 	$Colision.set_deferred("disabled", true)
+	$Area2D/CollisionShape2D.set_deferred("disabled", true)
 	_create_explosion()
+
+
+func _on_Timer_timeout():
+	_start_explosion()
 
 
 func _create_explosion() -> void:
@@ -31,3 +35,9 @@ func _on_body_exited(body):
 	if not _hasExploded and body.is_in_group("player"):
 		$Colision.set_deferred("disabled", false)
 		body.is_inside_bomb = false
+
+
+func force_explode() -> void:
+	if not _hasExploded:
+		$Timer.stop()
+		call_deferred("_start_explosion")
