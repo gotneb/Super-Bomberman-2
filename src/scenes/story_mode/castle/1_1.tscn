@@ -1547,16 +1547,16 @@ position = Vector2( 232, 76 )
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="Puff Puff" parent="Enemies" instance=ExtResource( 11 )]
-position = Vector2( 181.524, 103.647 )
+position = Vector2( 87.5, 166.5 )
 
 [node name="Puff Puff2" parent="Enemies" instance=ExtResource( 11 )]
-position = Vector2( 216, 168 )
+position = Vector2( 184, 168 )
 
 [node name="Puff Puff3" parent="Enemies" instance=ExtResource( 11 )]
 position = Vector2( 39.556, 104.06 )
 
 [node name="Player" parent="." instance=ExtResource( 7 )]
-position = Vector2( 136.625, 178.625 )
+position = Vector2( 168, 116.5 )
 
 [node name="Invisible Blocks" type="Node2D" parent="."]
 visible = false

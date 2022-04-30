@@ -41,7 +41,7 @@ animations = [ {
 "frames": [ ExtResource( 11 ), ExtResource( 13 ), ExtResource( 12 ), ExtResource( 15 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 11 ) ],
 "loop": false,
 "name": "destroying",
-"speed": 10.0
+"speed": 18.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
@@ -54,8 +54,8 @@ script = ExtResource( 9 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-animation = "destroying"
-frame = 8
+animation = "bomb"
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

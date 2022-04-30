@@ -5,6 +5,7 @@ var stage: Node2D
 
 
 func _on_AnimatedSprite_animation_finished():
+	#if randi()%9 in [0,1,2,3,4,5,6,7,8,9]: [only for tests!]
 	if randi()%9 in [2,5,7]:
 		_create_item()
 	queue_free()

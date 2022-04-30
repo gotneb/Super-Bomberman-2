@@ -9,21 +9,25 @@ var direction = {
 		"created": [],
 		"detected": [],
 		"distance": -1,
+		"body": [],
 	},
 	"left": {
 		"created": [],
 		"detected": [],
 		"distance": -1,
+		"body": [],
 	},
 	"up": {
 		"created": [],
 		"detected": [],
 		"distance": -1,
+		"body": [],
 	},
 	"down": {
 		"created": [],
 		"detected": [],
 		"distance": -1,
+		"body": [],
 	},
 }
 
@@ -96,6 +100,9 @@ func _on_Timer_timeout():
 	for t in ["left", "right", "up", "down"]:
 		setup(t)
 
+	#print("Down blocks:")
+	#for b in direction["down"]["detected"]:
+	#	print(b.name)
 	visible = true
 
 
@@ -104,21 +111,28 @@ func setup(d: String) -> void:
 	if direction[d]["detected"].size() == 0:
 		for i in direction[d]["created"]:
 			i.visible = true
+		for j in direction[d]["body"]:
+			j.take_damage()
 	# Some block has been captured
 	else:
 		for i in range(0, direction[d]["distance"] - 1):
 			direction[d]["created"][i].visible = true
 		direction[d]["detected"][0].destroy()
-
-
-# Bomb created explosion in your tree, so when bomb is cleaned the explosion too
-func _on_AnimatedSprite_animation_finished():
-	bomb.queue_free()
+		for j in direction[d]["body"]:
+			var dist = 0
+			if d in ["left", "right"]:
+				dist = abs($Center.global_position.x - j.global_position.x) / 16
+			else:
+				dist = round(abs($Center.global_position.y - j.global_position.y)) / 16
+			if dist < direction[d]["distance"]:
+				j.take_damage()
 
 
 # ============= TAKE DAMAGE WHEN SOMETHING ENTER ===============
 func take_damage(body, d: String) -> void:
-	if body.is_in_group("blocks"):
+	if body.is_in_group("blocks") or body is Item:
+		if d == "down":
+			print("Added: ", body.name)
 		direction[d]["detected"].append(body)
 		var measure := 0
 		if d in ["left", "right"]:
@@ -128,8 +142,13 @@ func take_damage(body, d: String) -> void:
 		# -1 means first time, because the distance cannot be negative
 		if direction[d]["distance"] == -1 or measure < direction[d]["distance"]:
 			direction[d]["distance"] = measure
-	elif body.is_in_group("player") or body.is_in_group("enemies"):
-		body.take_damage()
+	if body.is_in_group("player") or body.is_in_group("enemies"):
+		direction[d]["body"].append(body)
+
+
+func destroy_item(area, d) -> void:
+	if area is Item:
+		take_damage(area, d)
 
 
 func _on_Center_body_entered(body):
@@ -169,25 +188,36 @@ func _on_HorizontalRight_body_entered(body):
 # =======================================================
 
 # ================= DESTROY ITEM =========================
-func destroy_item(area) -> void:
-	if area is Item:
-		area.destroy()
+func _on_VerticalUp_area_entered(area):
+	destroy_item(area, "up")
+
+
+func _on_VerticalDown_area_entered(area):
+	destroy_item(area, "down")
+
+
+func _on_HorizontalLeft_area_entered(area):
+	destroy_item(area, "left")
+
+
+func _on_HorizontalRight_area_entered(area):
+	destroy_item(area, "right")
 
 
 func _on_Left_area_entered(area):
-	destroy_item(area)
+	destroy_item(area, "left")
 
 
 func _on_Right_area_entered(area):
-	destroy_item(area)
+	destroy_item(area, "right")
 
 
 func _on_Down_area_entered(area):
-	destroy_item(area)
+	destroy_item(area, "down")
 
 
 func _on_Up_area_entered(area):
-	destroy_item(area)
+	destroy_item(area, "up")
 
 
 # =======================================
@@ -197,6 +227,11 @@ func _enable_stubs() -> void:
 	$Stubs.visible = true
 	for i in stubs:
 		i.get_node("CollisionShape2D").set_deferred("disabled", false)
+
+
+# Bomb created explosion in your tree, so when bomb is cleaned the explosion too
+func _on_AnimatedSprite_animation_finished():
+	bomb.queue_free()
 
 
 # Abling stubs after enabling arms takes a short time, so when exploded,

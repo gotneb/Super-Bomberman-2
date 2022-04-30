@@ -49,17 +49,6 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 5.68734, 5.91584 )
 
-[sub_resource type="SpriteFrames" id=17]
-animations = [ {
-"frames": [ ExtResource( 16 ), ExtResource( 13 ), ExtResource( 15 ), ExtResource( 12 ), ExtResource( 14 ), ExtResource( 12 ), ExtResource( 14 ), ExtResource( 12 ), ExtResource( 14 ), ExtResource( 12 ), ExtResource( 15 ), ExtResource( 13 ), ExtResource( 16 ) ],
-"loop": true,
-"name": "default",
-"speed": 22.0
-} ]
-
-[sub_resource type="RectangleShape2D" id=18]
-extents = Vector2( 4.24313, 6.55515 )
-
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
 "frames": [ ExtResource( 16 ), ExtResource( 13 ), ExtResource( 15 ), ExtResource( 12 ), ExtResource( 14 ), ExtResource( 12 ), ExtResource( 14 ), ExtResource( 12 ), ExtResource( 14 ), ExtResource( 12 ), ExtResource( 15 ), ExtResource( 13 ), ExtResource( 16 ) ],
@@ -69,20 +58,20 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 4.07073, 7.02141 )
+extents = Vector2( 4.24313, 6.55515 )
 
 [sub_resource type="SpriteFrames" id=5]
 animations = [ {
-"frames": [ ExtResource( 22 ), ExtResource( 23 ), ExtResource( 26 ), ExtResource( 25 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 23 ), ExtResource( 22 ) ],
+"frames": [ ExtResource( 16 ), ExtResource( 13 ), ExtResource( 15 ), ExtResource( 12 ), ExtResource( 14 ), ExtResource( 12 ), ExtResource( 14 ), ExtResource( 12 ), ExtResource( 14 ), ExtResource( 12 ), ExtResource( 15 ), ExtResource( 13 ), ExtResource( 16 ) ],
 "loop": true,
 "name": "default",
 "speed": 22.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 6.64091, 4.25005 )
+extents = Vector2( 4.07073, 5.50005 )
 
-[sub_resource type="SpriteFrames" id=15]
+[sub_resource type="SpriteFrames" id=7]
 animations = [ {
 "frames": [ ExtResource( 22 ), ExtResource( 23 ), ExtResource( 26 ), ExtResource( 25 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 23 ), ExtResource( 22 ) ],
 "loop": true,
@@ -90,10 +79,21 @@ animations = [ {
 "speed": 22.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=16]
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 6.64091, 4.25005 )
+
+[sub_resource type="SpriteFrames" id=9]
+animations = [ {
+"frames": [ ExtResource( 22 ), ExtResource( 23 ), ExtResource( 26 ), ExtResource( 25 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 23 ), ExtResource( 22 ) ],
+"loop": true,
+"name": "default",
+"speed": 22.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=10]
 extents = Vector2( 5.81406, 4.02518 )
 
-[sub_resource type="SpriteFrames" id=7]
+[sub_resource type="SpriteFrames" id=11]
 animations = [ {
 "frames": [ ExtResource( 8 ), ExtResource( 11 ), ExtResource( 7 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 7 ), ExtResource( 11 ), ExtResource( 8 ) ],
 "loop": true,
@@ -101,10 +101,10 @@ animations = [ {
 "speed": 22.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=8]
+[sub_resource type="RectangleShape2D" id=12]
 extents = Vector2( 5.25, 5.50005 )
 
-[sub_resource type="SpriteFrames" id=9]
+[sub_resource type="SpriteFrames" id=13]
 animations = [ {
 "frames": [ ExtResource( 17 ), ExtResource( 21 ), ExtResource( 18 ), ExtResource( 20 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 18 ), ExtResource( 21 ), ExtResource( 17 ) ],
 "loop": true,
@@ -112,10 +112,10 @@ animations = [ {
 "speed": 22.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=10]
+[sub_resource type="RectangleShape2D" id=14]
 extents = Vector2( 5.32274, 5.50005 )
 
-[sub_resource type="SpriteFrames" id=11]
+[sub_resource type="SpriteFrames" id=15]
 animations = [ {
 "frames": [ ExtResource( 27 ), ExtResource( 31 ), ExtResource( 29 ), ExtResource( 30 ), ExtResource( 28 ), ExtResource( 30 ), ExtResource( 28 ), ExtResource( 30 ), ExtResource( 28 ), ExtResource( 30 ), ExtResource( 29 ), ExtResource( 31 ), ExtResource( 27 ) ],
 "loop": true,
@@ -123,10 +123,10 @@ animations = [ {
 "speed": 22.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=12]
+[sub_resource type="RectangleShape2D" id=16]
 extents = Vector2( 6.00004, 4.25005 )
 
-[sub_resource type="SpriteFrames" id=13]
+[sub_resource type="SpriteFrames" id=17]
 animations = [ {
 "frames": [ ExtResource( 35 ), ExtResource( 34 ), ExtResource( 33 ), ExtResource( 36 ), ExtResource( 32 ), ExtResource( 36 ), ExtResource( 32 ), ExtResource( 36 ), ExtResource( 32 ), ExtResource( 36 ), ExtResource( 33 ), ExtResource( 34 ), ExtResource( 35 ) ],
 "loop": true,
@@ -134,7 +134,7 @@ animations = [ {
 "speed": 22.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=14]
+[sub_resource type="RectangleShape2D" id=18]
 extents = Vector2( 5.5, 4.75005 )
 
 [node name="Explosion" type="Node2D"]
@@ -163,10 +163,10 @@ __meta__ = {
 }
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Arms/VerticalUp"]
-frames = SubResource( 17 )
+frames = SubResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Arms/VerticalUp"]
-shape = SubResource( 18 )
+shape = SubResource( 4 )
 disabled = true
 
 [node name="VerticalDown" type="Area2D" parent="Arms" groups=[
@@ -181,11 +181,10 @@ __meta__ = {
 }
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Arms/VerticalDown"]
-frames = SubResource( 3 )
+frames = SubResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Arms/VerticalDown"]
-shape = SubResource( 4 )
-disabled = true
+shape = SubResource( 6 )
 
 [node name="HorizontalLeft" type="Area2D" parent="Arms" groups=[
 "horizontal_arm",
@@ -199,11 +198,11 @@ __meta__ = {
 }
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Arms/HorizontalLeft"]
-frames = SubResource( 5 )
+frames = SubResource( 7 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Arms/HorizontalLeft"]
 position = Vector2( 3.8147e-05, -4.57764e-05 )
-shape = SubResource( 6 )
+shape = SubResource( 8 )
 disabled = true
 
 [node name="HorizontalRight" type="Area2D" parent="Arms"]
@@ -216,10 +215,10 @@ __meta__ = {
 }
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Arms/HorizontalRight"]
-frames = SubResource( 15 )
+frames = SubResource( 9 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Arms/HorizontalRight"]
-shape = SubResource( 16 )
+shape = SubResource( 10 )
 disabled = true
 
 [node name="Stubs" type="Node2D" parent="."]
@@ -234,10 +233,10 @@ __meta__ = {
 }
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Stubs/Up"]
-frames = SubResource( 7 )
+frames = SubResource( 11 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Stubs/Up"]
-shape = SubResource( 8 )
+shape = SubResource( 12 )
 disabled = true
 
 [node name="Down" type="Area2D" parent="Stubs"]
@@ -250,10 +249,10 @@ __meta__ = {
 }
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Stubs/Down"]
-frames = SubResource( 9 )
+frames = SubResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Stubs/Down"]
-shape = SubResource( 10 )
+shape = SubResource( 14 )
 disabled = true
 
 [node name="Right" type="Area2D" parent="Stubs"]
@@ -266,10 +265,10 @@ __meta__ = {
 }
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Stubs/Right"]
-frames = SubResource( 11 )
+frames = SubResource( 15 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Stubs/Right"]
-shape = SubResource( 12 )
+shape = SubResource( 16 )
 disabled = true
 
 [node name="Left" type="Area2D" parent="Stubs"]
@@ -282,10 +281,10 @@ __meta__ = {
 }
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Stubs/Left"]
-frames = SubResource( 13 )
+frames = SubResource( 17 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Stubs/Left"]
-shape = SubResource( 14 )
+shape = SubResource( 18 )
 disabled = true
 
 [node name="Timer" type="Timer" parent="."]
@@ -301,9 +300,13 @@ one_shot = true
 
 [connection signal="body_entered" from="Center" to="." method="_on_Center_body_entered"]
 [connection signal="animation_finished" from="Center/AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
+[connection signal="area_entered" from="Arms/VerticalUp" to="." method="_on_VerticalUp_area_entered"]
 [connection signal="body_entered" from="Arms/VerticalUp" to="." method="_on_VerticalUp_body_entered"]
+[connection signal="area_entered" from="Arms/VerticalDown" to="." method="_on_VerticalDown_area_entered"]
 [connection signal="body_entered" from="Arms/VerticalDown" to="." method="_on_VerticalDown_body_entered"]
+[connection signal="area_entered" from="Arms/HorizontalLeft" to="." method="_on_HorizontalLeft_area_entered"]
 [connection signal="body_entered" from="Arms/HorizontalLeft" to="." method="_on_HorizontalLeft_body_entered"]
+[connection signal="area_entered" from="Arms/HorizontalRight" to="." method="_on_HorizontalRight_area_entered"]
 [connection signal="body_entered" from="Arms/HorizontalRight" to="." method="_on_HorizontalRight_body_entered"]
 [connection signal="area_entered" from="Stubs/Up" to="." method="_on_Up_area_entered"]
 [connection signal="body_entered" from="Stubs/Up" to="." method="_on_Up_body_entered"]
