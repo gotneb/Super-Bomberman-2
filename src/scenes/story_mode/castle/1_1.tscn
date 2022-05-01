@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=2]
+[gd_scene load_steps=57 format=2]
 
 [ext_resource path="res://assets/stages/castle/spritesheet.png" type="Texture" id=1]
 [ext_resource path="res://scenes/ui/score.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://scenes/story_mode/castle/block_castle.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/story_mode/castle/chest.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/enemies/stage1/puff_puff.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/story_mode/castle/magnet.tscn" type="PackedScene" id=12]
 
 [sub_resource type="TileSet" id=1]
 0/name = "spritesheet.png 0"
@@ -1451,6 +1452,14 @@ position = Vector2( 56, 156 )
 [node name="Block22" parent="Blocks" instance=ExtResource( 9 )]
 position = Vector2( 56, 188 )
 
+[node name="Magnets" type="Node2D" parent="."]
+
+[node name="Magnet" parent="Magnets" instance=ExtResource( 12 )]
+position = Vector2( 72, 188 )
+
+[node name="Magnet2" parent="Magnets" instance=ExtResource( 12 )]
+position = Vector2( 200, 188 )
+
 [node name="Chests" type="Node2D" parent="."]
 
 [node name="Chest" parent="Chests" instance=ExtResource( 10 )]
@@ -1547,7 +1556,7 @@ position = Vector2( 232, 76 )
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="Puff Puff" parent="Enemies" instance=ExtResource( 11 )]
-position = Vector2( 87.5, 166.5 )
+position = Vector2( 136, 104 )
 
 [node name="Puff Puff2" parent="Enemies" instance=ExtResource( 11 )]
 position = Vector2( 184, 168 )
@@ -1556,7 +1565,7 @@ position = Vector2( 184, 168 )
 position = Vector2( 39.556, 104.06 )
 
 [node name="Player" parent="." instance=ExtResource( 7 )]
-position = Vector2( 137.5, 178.5 )
+position = Vector2( 72, 176 )
 
 [node name="Invisible Blocks" type="Node2D" parent="."]
 visible = false

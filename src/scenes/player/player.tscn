@@ -42,14 +42,14 @@ animations = [ {
 "name": "top",
 "speed": 7.0
 }, {
-"frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
-"loop": true,
-"name": "down",
-"speed": 7.0
-}, {
 "frames": [ ExtResource( 17 ), ExtResource( 22 ), ExtResource( 19 ), ExtResource( 15 ), ExtResource( 18 ), ExtResource( 23 ), ExtResource( 20 ), ExtResource( 16 ), ExtResource( 21 ) ],
 "loop": false,
 "name": "death",
+"speed": 7.0
+}, {
+"frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "down",
 "speed": 7.0
 } ]
 

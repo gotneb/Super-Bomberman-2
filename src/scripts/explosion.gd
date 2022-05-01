@@ -129,7 +129,7 @@ func setup(d: String) -> void:
 func take_damage(body, d: String) -> void:
 	if body.is_in_group("bomb"):
 		body.force_explode()
-	elif body.is_in_group("blocks") or body is Item:
+	elif body.is_in_group("blocks") or body is Item or body is Magnet:
 		direction[d]["detected"].append(body)
 		var measure := 0
 		if d in ["left", "right"]:
@@ -139,6 +139,8 @@ func take_damage(body, d: String) -> void:
 		# -1 means first time, because the distance cannot be negative
 		if direction[d]["distance"] == -1 or measure < direction[d]["distance"]:
 			direction[d]["distance"] = measure
+		if body is Magnet:
+			body.change_direction()
 	if body.is_in_group("player") or body.is_in_group("enemies"):
 		direction[d]["body"].append(body)
 

@@ -29,6 +29,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/item.gd"
 }, {
+"base": "StaticBody2D",
+"class": "Magnet",
+"language": "GDScript",
+"path": "res://scripts/stages/castle/magnet.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Player",
 "language": "GDScript",
@@ -44,6 +49,7 @@ _global_script_class_icons={
 "Chest": "",
 "Explosion": "",
 "Item": "",
+"Magnet": "",
 "Player": "",
 "PuffPuff": ""
 }
